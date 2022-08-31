@@ -25,7 +25,7 @@ function Dashboard({ date, setDate }) {
       .catch(setReservationsError);
     return () => abortController.abort();
   }
-  console.log(reservations);
+  console.log('hello',reservations);
 
   return (
     <main>

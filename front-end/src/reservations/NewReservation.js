@@ -4,6 +4,9 @@ import { createRes } from "../utils/api";
 
 export default function NewReservation({setDate}) {
   const history = useHistory();
+  const [tuesday, setTuesday] = useState(false)
+  const [pastDate, setPastDate] = useState(false)
+  const [pastTuesday, setPastTuesday] = useState(false)
   const [newReservation, setNewReservation] = useState({
     first_name: "",
     last_name: "",
@@ -13,6 +16,7 @@ export default function NewReservation({setDate}) {
     people: "",
   });
   // console.log(newReservation);
+
 
   const handleChange = (event) => {
     const { target } = event;
@@ -25,6 +29,21 @@ export default function NewReservation({setDate}) {
     event.preventDefault();
     newReservation.people = Number(newReservation.people); //to change string to number so that it fits the api criteria
     // console.log(newReservation.people);
+    const day = new Date(newReservation.reservation_date)
+    const dayOf = day.getUTCDay()
+    const currentDate = new Date()
+    if(dayOf === 2 && day < currentDate){
+      setPastTuesday(true)
+      return
+    }
+    if(dayOf === 2 ){
+      setTuesday(true)
+      return 
+    }
+    if( day < currentDate ){
+      setPastDate(true)
+      return
+    }
     console.log(newReservation.reservation_date)
     createRes(newReservation)
     setDate(newReservation.reservation_date)
@@ -82,6 +101,8 @@ export default function NewReservation({setDate}) {
             onChange={handleChange}
           />
         </div>
+        {pastTuesday || tuesday? <p className="alert alert-danger">Tuesday is closed. Please make a reservation for a future date</p> : null}
+        {pastDate ? <p className="alert alert-danger">Must be future date</p> : null}
         <div>
           <input
             type="time"

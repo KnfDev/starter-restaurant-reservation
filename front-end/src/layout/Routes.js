@@ -15,6 +15,8 @@ import NewReservation from "../reservations/NewReservation"
  */
 function Routes() {
   const [date, setDate] = useState(today())
+  
+  const [utcDate, setUtcDate] = useState()
 
   return (
     <Switch>

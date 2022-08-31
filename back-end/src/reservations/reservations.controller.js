@@ -32,6 +32,7 @@
    return function (req, res, next) {
      const { data = {} } = req.body;
      const isTime = data[propertyName].replace(/:/g, "");
+     //     if (Number(isTime) < 10:30AM || Number(isTime) > 9:30PM) {
      if (Number(isTime)) {
        return next();
      }
@@ -39,14 +40,12 @@
    };
  }
  
- function isPeopleNumber(propertyName) {
-   return function (req, res, next) {
+ function isPeopleNumber(req, res, next) {
      const { data = {} } = req.body;
-     if (Number.isInteger(data[propertyName])) {
+     if (Number.isInteger(data.people)) {
        return next();
      }
-     next({ status: 400, message: `${propertyName}` });
-   };
+     next({ status: 400, message: `people is not a number` });
  }
  
  function bodyDataHas(propertyName) {
@@ -59,6 +58,29 @@
    };
  }
  
+ function isTuesday(req,res,next) {
+  console.log('hello',req)
+  const { data = {} } = req.body // gets the body of data from the JSON
+  const day = new Date(data.reservation_date)
+  const dayOf = day.getUTCDay() // returns from 0-6 0 sunday ->
+  if(dayOf === 2){
+    return next({status: 400, message :`closed`})
+  }
+  next()
+ }
+
+ function isFutureRes(req,res,next){
+  const {data = {}} = req.body
+  const day = new Date(data.reservation_date)
+  const today = new Date() // empty argument = current
+  if(day<today){
+    return next({status: 400, message: 'Needs to be future date'})
+  } 
+  return next()
+ }
+
+
+ 
  module.exports = {
    list: [asyncErrorBoundary(list)],
    post: [
@@ -66,11 +88,13 @@
      bodyDataHas("last_name"),
      bodyDataHas("mobile_number"),
      bodyDataHas("reservation_date"),
+     isTuesday,
+     isFutureRes,
      bodyDataHas("reservation_time"),
      bodyDataHas("people"),
      isNumber("reservation_date"),
      isTime("reservation_time"),
-     isPeopleNumber("people"),
+     isPeopleNumber,
      asyncErrorBoundary(create),
    ],
  };
