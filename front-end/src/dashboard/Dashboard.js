@@ -3,13 +3,13 @@ import { listReservations } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ListResComp from "./ListResComp";
 import { today, next, previous } from "../utils/date-time";
-// import useQuery from "../utils/useQuery";
 /**
  * Defines the dashboard page.
  * @param date
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
+
 function Dashboard({ date, setDate }) {
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
@@ -25,7 +25,8 @@ function Dashboard({ date, setDate }) {
       .catch(setReservationsError);
     return () => abortController.abort();
   }
-  console.log('hello',reservations);
+
+  // console.log('hello',reservations);
 
   return (
     <main>

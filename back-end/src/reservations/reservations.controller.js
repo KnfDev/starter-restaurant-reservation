@@ -12,6 +12,23 @@
      data
    });
  }
+
+ async function read(req, res) {
+  res.json({ data: res.locals.reservation })
+}
+
+async function reservationExists(req, res, next) {
+  const reservation = await service.read(req.params.reservation_Id)
+  if(reservation){
+    res.locals.reservation = reservation;
+    return next()
+  }
+  next({
+    status: 404,
+    message: `Reservation cannot be found.`
+  })
+}
+
  async function create(req, res) {
    const data = await service.create(req.body.data);
    res.status(201).json({ data });
@@ -32,14 +49,16 @@
    return function (req, res, next) {
      const { data = {} } = req.body;
      const isTime = data[propertyName].replace(/:/g, "");
-     //     if (Number(isTime) < 10:30AM || Number(isTime) > 9:30PM) {
      if (Number(isTime)) {
+          //  if (Number(isTime) < 1030 || Number(isTime) > 930) 
        return next();
      }
      next({ status: 400, message: `${propertyName}` });
    };
  }
  
+
+
  function isPeopleNumber(req, res, next) {
      const { data = {} } = req.body;
      if (Number.isInteger(data.people)) {
@@ -59,7 +78,7 @@
  }
  
  function isTuesday(req,res,next) {
-  console.log('hello',req)
+  // console.log('hello',req)
   const { data = {} } = req.body // gets the body of data from the JSON
   const day = new Date(data.reservation_date)
   const dayOf = day.getUTCDay() // returns from 0-6 0 sunday ->
@@ -71,7 +90,7 @@
 
  function isFutureRes(req,res,next){
   const {data = {}} = req.body
-  const day = new Date(data.reservation_date)
+  const day = new Date(`${data.reservation_date} ${data.reservation_time} `)
   const today = new Date() // empty argument = current
   if(day<today){
     return next({status: 400, message: 'Needs to be future date'})
@@ -80,21 +99,37 @@
  }
 
 
+ function openHours(req, res, next) {
+  const {data = {}} = req.body
+  const time = data.reservation_time
+  const currentTime = new Date()
+  if(currentTime<time){
+    return next({ status: 400, message: `please make reservation for a time after current time`})
+  }
+  if(time < '10:30' || time > '20:30'){
+    return next({ status: 400, message: `Hours of operation are between 10:30AM to 09:30PM, latest reservations 1 hour before closing`})
+  }
+  return next()
+ }
  
  module.exports = {
    list: [asyncErrorBoundary(list)],
-   post: [
+   create: [
      bodyDataHas("first_name"),
      bodyDataHas("last_name"),
      bodyDataHas("mobile_number"),
      bodyDataHas("reservation_date"),
      isTuesday,
      isFutureRes,
+     isPeopleNumber,
      bodyDataHas("reservation_time"),
      bodyDataHas("people"),
      isNumber("reservation_date"),
      isTime("reservation_time"),
-     isPeopleNumber,
+     openHours,
      asyncErrorBoundary(create),
    ],
+   read: [
+    asyncErrorBoundary(reservationExists), read
+   ]
  };

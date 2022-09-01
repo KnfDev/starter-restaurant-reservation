@@ -15,6 +15,7 @@ export default function ListResComp({ reservations }) {
         <p>
           <b>Reservation Time</b> : {reservation.reservation_time}
         </p>
+      <button>Seat</button>
         <hr />
       </div>
     );
