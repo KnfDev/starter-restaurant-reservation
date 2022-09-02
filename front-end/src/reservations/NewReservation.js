@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import { createRes } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
-export default function NewReservation({setDate}) {
+export default function NewReservation({ setDate }) {
   const history = useHistory();
-  const [errors, setErrors] = useState(null)
+  const [errors, setErrors] = useState(null);
 
   const [newReservation, setNewReservation] = useState({
     first_name: "",
@@ -17,7 +17,6 @@ export default function NewReservation({setDate}) {
   });
   // console.log(newReservation);
 
-
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;
@@ -27,13 +26,13 @@ export default function NewReservation({setDate}) {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    newReservation.people = Number(newReservation.people)
+    newReservation.people = Number(newReservation.people);
     createRes(newReservation)
-    .then(()=>{
-      setDate(newReservation.reservation_date)
-      history.push("/reservations");
-    })
-    .catch(setErrors)
+      .then(() => {
+        setDate(newReservation.reservation_date);
+        history.push("/reservations");
+      })
+      .catch(setErrors);
   };
 
   return (
@@ -93,16 +92,16 @@ export default function NewReservation({setDate}) {
             onChange={handleChange}
           />
         </div>
-        <ErrorAlert error={errors}/>
-          <button type="submit">Submit</button>
+        <ErrorAlert error={errors} />
+        <button type="submit">Submit</button>
+        <button
+          onClick={() => {
+            history.go("-1");
+          }}
+        >
+          Cancel
+        </button>
       </form>
-      <button
-        onClick={() => {
-          history.go("-1");
-        }}
-      >
-        Cancel
-      </button>
     </>
   );
 }

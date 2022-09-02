@@ -57,8 +57,6 @@ async function reservationExists(req, res, next) {
    };
  }
  
-
-
  function isPeopleNumber(req, res, next) {
      const { data = {} } = req.body;
      if (Number.isInteger(data.people)) {
@@ -97,7 +95,6 @@ async function reservationExists(req, res, next) {
   } 
   return next()
  }
-
 
  function openHours(req, res, next) {
   const {data = {}} = req.body
