@@ -5,6 +5,7 @@ export default function ListTablesComp ({ tables }) {
       <p><b>Table Name: </b>{table.table_name}</p>
       <p><b>Table Capacity: </b>{table.capacity}</p>
       <p><b>Is Reserved: </b>{table.reservation_id ? `Occupied` : `Free`}</p>
+      <hr/>
       </div>
     )
   }) 

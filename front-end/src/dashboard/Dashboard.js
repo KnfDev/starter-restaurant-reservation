@@ -34,7 +34,7 @@ function Dashboard({ date, setDate }) {
       .catch(setTablesError)
     return () => abortController.abort();
   }
-  console.log(tables)
+  // console.log(tables)
   // console.log('hello',reservations);
 
   return (
