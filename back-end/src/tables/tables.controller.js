@@ -73,6 +73,7 @@ function isInteger(req,res,next) {
 
 
 function capacity(req,res,next) {
+  console.log('capacity',res.locals.reservation)
   const reservation = res.locals.reservation.people
   const table = res.locals.table.capacity
   if( reservation > table ){
