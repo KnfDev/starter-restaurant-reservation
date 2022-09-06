@@ -4,7 +4,8 @@ export default function ListTablesComp ({ tables }) {
       <div key={table.table_id}>
       <p><b>Table Name: </b>{table.table_name}</p>
       <p><b>Table Capacity: </b>{table.capacity}</p>
-      <p><b>Is Reserved: </b>{table.reservation_id ? `Occupied ${table.reservation_id}` : `Free`}</p>
+      <p><b>Is Reserved: </b><span data-table-id-status={table.table_id}>{table.reservation_id ? `occupied` : `Free`}</span></p>
+
       <hr/>
       </div>
     )

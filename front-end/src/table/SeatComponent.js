@@ -3,16 +3,11 @@ import { useHistory, useParams } from "react-router";
 import ErrorAlert from "../layout/ErrorAlert";
 import { listTables, updateTable } from "../utils/api";
 // import ListTablesComp from "../dashboard/ListTablesComp"
-export default function SeatComponent({tables, setTables, tablesError, setTablesError, reservations, date, currentRes}) {
+export default function SeatComponent() {
   const history = useHistory();
-  // console.log('seat component',tables, reservations, date, 'currentRes',currentRes)
-  // const [tableStatus, setTableStatus] = useState({
-  //   table_name: "",
-  //   table_id: "",
-  //   reservation_id: "",
-  // });
-  // console.log(tableStatus)
-  const [tableId, setTableId] = useState(null)
+  const [tableId, setTableId] = useState();
+  const [tablesError, setTablesError] = useState(null);
+  const [tables, setTables] = useState([]);
 
   useEffect(loadTables, []);
 
@@ -22,8 +17,7 @@ export default function SeatComponent({tables, setTables, tablesError, setTables
   function loadTables() {
     const abortController = new AbortController();
     setTablesError(null);
-    listTables(abortController.signal).then(setTables)
-    .catch(setTablesError);
+    listTables(abortController.signal).then(setTables).catch(setTablesError);
     return () => abortController.abort();
   }
 
@@ -32,7 +26,7 @@ export default function SeatComponent({tables, setTables, tablesError, setTables
     const value = target.value;
     console.log("value", [target.name], value);
     // setTableStatus({ ...tableStatus, table_id: value });
-    setTableId(value)
+    setTableId(value);
     // console.log("value", [target.name], value);
   };
 
@@ -41,10 +35,13 @@ export default function SeatComponent({tables, setTables, tablesError, setTables
     reservation_id = Number(reservation_id);
     updateTable(tableId, reservation_id)
       // .then(setTableStatus(tableStatus.reservation_id))
-      .then(setTables(tables.map((table)=> table.table_id===Number(tableId) ? {...table, reservation_id} : table)))
-      .then(setTableId(null))
-      .then(history.push("/dashboard"))
-      .catch(setTablesError);
+      // .then((updatedTable) => {
+      //   console.log("updatedTable", updatedTable, "tables", tables);
+      // })
+      // .then(()=>setTableId(null))
+      .then(()=>history.push("/dashboard"))
+      // .catch(setTablesError);
+      .catch(error=>console.log('error',error))
   };
 
   const tablesForm = tables.map((table) => {
@@ -52,7 +49,7 @@ export default function SeatComponent({tables, setTables, tablesError, setTables
     return (
       <>
         <option key={table.table_id} value={table.table_id}>
-          Table Name:{table.table_name}-Table Size:{table.capacity}
+          {table.table_name} - {table.capacity}
         </option>
       </>
     );
@@ -61,13 +58,14 @@ export default function SeatComponent({tables, setTables, tablesError, setTables
   return (
     // <ListTablesComp tables={tables}/>
     <form onSubmit={submitHandler}>
-      <select value={tableId} onChange={handleChange}>{tablesForm}</select>
-      <button>Submit</button>
-      <button type="button"
-        onClick={() => history.goBack()}>
+      <select name="table_id" value={tableId} onChange={handleChange}>
+        {tablesForm}
+      </select>
+      <button type="submit">Submit</button>
+      <button type="button" onClick={() => history.goBack()}>
         Cancel
       </button>
-        <ErrorAlert error={tablesError} />
+      <ErrorAlert error={tablesError} />
     </form>
   );
 }

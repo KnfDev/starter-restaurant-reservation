@@ -2,10 +2,14 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createRes } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-
-export default function NewReservation({ setDate }) {
+import useQuery from "../utils/useQuery";
+import { today } from "../utils/date-time";
+export default function NewReservation() {
   const history = useHistory();
   const [errors, setErrors] = useState(null);
+  const query = useQuery();
+  const date = query.get("date") || today();
+  // const [date, setDate] = useState(date2 ? date2 : today());
 
   const [newReservation, setNewReservation] = useState({
     first_name: "",
@@ -32,8 +36,7 @@ export default function NewReservation({ setDate }) {
     newReservation.people = Number(newReservation.people);
     createRes(newReservation)
       .then(() => {
-        setDate(newReservation.reservation_date);
-        history.push("/reservations");
+        history.push(`/dashboard?date=${newReservation.reservation_date}`);
       })
       .catch(setErrors);
   };
@@ -100,7 +103,7 @@ export default function NewReservation({ setDate }) {
         
         <button type="button"
           onClick={() => {
-            history.goBack();
+            history.go("-1");
           }}
         >
           Cancel

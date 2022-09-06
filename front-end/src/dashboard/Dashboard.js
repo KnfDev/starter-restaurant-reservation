@@ -1,9 +1,11 @@
-// import React, { useEffect, useState } from "react";
-// import { listReservations, listTables } from "../utils/api";
+import React, { useEffect, useState } from "react";
+import { listReservations, listTables } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ListResComp from "./ListResComp";
 import ListTablesComp from "./ListTablesComp";
 import { today, next, previous } from "../utils/date-time";
+import useQuery from "../utils/useQuery";
+import { useHistory } from "react-router-dom"
 /**
  * Defines the dashboard page.
  * @param date
@@ -11,7 +13,40 @@ import { today, next, previous } from "../utils/date-time";
  * @returns {JSX.Element}
  */
 
-function Dashboard({ reservations, tables, currentRes, setCurrentRes, date, setDate, reservationsError, tablesError }) {
+function Dashboard() {
+
+  const [reservations, setReservations] = useState([]);
+  const [reservationsError, setReservationsError] = useState(null);
+  const [tablesError, setTablesError] = useState(null);
+  const [tables, setTables] = useState([]);
+  const query = useQuery();
+  const date = query.get("date") || today();
+  // const [date, setDate] = useState(date2 ? date2 : today());
+  const [currentRes, setCurrentRes] = useState()
+  const history = useHistory()
+
+  useEffect(loadDashboard, [date]);
+  // console.log(date)
+  
+  function loadDashboard() {
+    const abortController = new AbortController();
+    setReservationsError(null);
+    listReservations({ date }, abortController.signal)
+    .then(setReservations)
+    .catch(setReservationsError);
+    return () => abortController.abort();
+  }
+  
+  useEffect(loadTables, []);
+  
+  function loadTables() {
+    const abortController = new AbortController();
+    setTablesError(null);
+    listTables(abortController.signal)
+    .then(setTables)
+    .catch(setTablesError);
+    return () => abortController.abort();
+  }
 
   return (
     <main>
@@ -31,9 +66,9 @@ function Dashboard({ reservations, tables, currentRes, setCurrentRes, date, setD
           `There are no reservations today`
         )}
       </div>
-      <button onClick={() => setDate(previous(date))}>Previous</button>
-      <button onClick={() => setDate(today())}>Today</button>
-      <button onClick={() => setDate(next(date))}>Next</button>
+      <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>Previous</button>
+      <button onClick={() => today()}>Today</button>
+      <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ErrorAlert error={reservationsError} />
       <hr/>
       <ListTablesComp tables={tables}/>

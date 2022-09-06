@@ -25,7 +25,7 @@ export default function ListResComp({ reservations, currentRes, setCurrentRes })
         </p>
         <a href={`/reservations/${reservation.reservation_id}/seat`}>
           {/* <button>Seat</button> */}
-          <button>Seat</button>
+          Seat
         </a>
         <hr />
       </div>
