@@ -1,46 +1,73 @@
 import { useEffect, useState } from "react";
-import { listTables } from "../utils/api";
+import { useHistory, useParams } from "react-router";
+import ErrorAlert from "../layout/ErrorAlert";
+import { listTables, updateTable } from "../utils/api";
 // import ListTablesComp from "../dashboard/ListTablesComp"
-export default function SeatComponent() {
-  const [tables, setTables] = useState([])
-  const [tablesError, setTablesError] = useState(null)
+export default function SeatComponent({tables, setTables, tablesError, setTablesError, reservations, date, currentRes}) {
+  const history = useHistory();
+  // console.log('seat component',tables, reservations, date, 'currentRes',currentRes)
+  // const [tableStatus, setTableStatus] = useState({
+  //   table_name: "",
+  //   table_id: "",
+  //   reservation_id: "",
+  // });
+  // console.log(tableStatus)
+  const [tableId, setTableId] = useState(null)
+
   useEffect(loadTables, []);
-  // console.log(date)
+
+  let params = useParams();
+  let reservation_id = params.reservation_id;
 
   function loadTables() {
     const abortController = new AbortController();
-
-
-    setTablesError(null)
-    listTables(abortController.signal)
-      .then(setTables)
-      .catch(setTablesError)
+    setTablesError(null);
+    listTables(abortController.signal).then(setTables)
+    .catch(setTablesError);
     return () => abortController.abort();
   }
 
-const tablesForm = tables.map((table)=> {
-  return <>
-  <div>
+  const handleChange = (event) => {
+    const { target } = event;
+    const value = target.value;
+    console.log("value", [target.name], value);
+    // setTableStatus({ ...tableStatus, table_id: value });
+    setTableId(value)
+    // console.log("value", [target.name], value);
+  };
 
-  <label for="table_number">Table Number: {table.table_id}</label>
-  <select id={`${table.table_id}`} name={`${table.table_name}`}>
-    <option>Table Name:{table.table_name}-Table Size:{table.capacity}</option>
-  </select>
-  </div>
-  </>
-})
+  const submitHandler = (event) => {
+    event.preventDefault();
+    reservation_id = Number(reservation_id);
+    updateTable(tableId, reservation_id)
+      // .then(setTableStatus(tableStatus.reservation_id))
+      .then(setTables(tables.map((table)=> table.table_id===Number(tableId) ? {...table, reservation_id} : table)))
+      .then(setTableId(null))
+      .then(history.push("/dashboard"))
+      .catch(setTablesError);
+  };
+
+  const tablesForm = tables.map((table) => {
+    // console.log("hello", table.reservation_id);
+    return (
+      <>
+        <option key={table.table_id} value={table.table_id}>
+          Table Name:{table.table_name}-Table Size:{table.capacity}
+        </option>
+      </>
+    );
+  });
 
   return (
     // <ListTablesComp tables={tables}/>
-    <form>
-      {/* <label for="table_name">Table Number:</label>
-      <select id="table_id" name="table_name">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="fiat">Fiat</option>
-        <option value="audi">Audi</option>
-      </select> */}
-      {tablesForm}
+    <form onSubmit={submitHandler}>
+      <select value={tableId} onChange={handleChange}>{tablesForm}</select>
+      <button>Submit</button>
+      <button type="button"
+        onClick={() => history.goBack()}>
+        Cancel
+      </button>
+        <ErrorAlert error={tablesError} />
     </form>
   );
 }

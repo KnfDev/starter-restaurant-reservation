@@ -1,6 +1,7 @@
 
-export default function ListResComp({ reservations }) {
-  
+export default function ListResComp({ reservations, currentRes, setCurrentRes }) {
+  // console.log('listResComp',reservations, 'currentRes',currentRes);
+  console.log(reservations)
   let list = reservations.map((reservation) => {
     return (
       <div key={reservation.reservation_id}>
@@ -19,8 +20,12 @@ export default function ListResComp({ reservations }) {
         <p>
           <b>Reservation Time</b> : {reservation.reservation_time}
         </p>
+        <p>
+          <b>Reservation ID</b>: {reservation.reservation_id}
+        </p>
         <a href={`/reservations/${reservation.reservation_id}/seat`}>
-      <button>Seat</button>
+          {/* <button>Seat</button> */}
+          <button>Seat</button>
         </a>
         <hr />
       </div>

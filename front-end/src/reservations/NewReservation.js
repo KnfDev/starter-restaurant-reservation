@@ -15,14 +15,17 @@ export default function NewReservation({ setDate }) {
     reservation_time: "",
     people: "",
   });
+  
   // console.log(newReservation);
 
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;
+    console.log('value',[target.name],value)
     setNewReservation({ ...newReservation, [target.name]: value });
     // console.log("value", [target.name], value);
   };
+  console.log('newres',newReservation)
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -94,9 +97,10 @@ export default function NewReservation({ setDate }) {
         </div>
         <ErrorAlert error={errors} />
         <button type="submit">Submit</button>
-        <button
+        
+        <button type="button"
           onClick={() => {
-            history.go("-1");
+            history.goBack();
           }}
         >
           Cancel

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { createTable } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
-export default function NewTable() {
+export default function NewTable({tables, setTables}) {
   const history = useHistory();
 
   const [errors, setErrors] = useState(null);
@@ -23,10 +23,14 @@ export default function NewTable() {
   const submitHandler = (event) => {
     event.preventDefault();
     newTable.capacity = Number(newTable.capacity);
+    console.log(newTable)
     createTable(newTable)
-      .then(() => {
-        history.push("/");
+    // .then(setTables(newTable))
+    //create call back to receive new table for id from create table
+      .then((updatedTable)=>{
+        setTables([...tables,updatedTable])
       })
+      .then(()=>history.push("/"))
       .catch(setErrors);
   };
 
