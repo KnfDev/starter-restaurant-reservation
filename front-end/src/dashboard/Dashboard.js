@@ -71,7 +71,7 @@ function Dashboard() {
       <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ErrorAlert error={reservationsError} />
       <hr/>
-      <ListTablesComp tables={tables}/>
+      <ListTablesComp tables={tables} setTables={setTables}/>
       <ErrorAlert error={tablesError} />
     </main>
   );
