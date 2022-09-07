@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createRes } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-import useQuery from "../utils/useQuery";
-import { today } from "../utils/date-time";
+// import useQuery from "../utils/useQuery";
+// import { today } from "../utils/date-time";
 export default function NewReservation() {
   const history = useHistory();
   const [errors, setErrors] = useState(null);
-  const query = useQuery();
-  const date = query.get("date") || today();
+  // const query = useQuery();
+  // const date = query.get("date") || today();
   // const [date, setDate] = useState(date2 ? date2 : today());
 
   const [newReservation, setNewReservation] = useState({
