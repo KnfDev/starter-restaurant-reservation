@@ -32,23 +32,19 @@ export default function SeatComponent() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    reservation_id = Number(reservation_id);
-    updateTable(tableId, reservation_id)
-      // .then(setTableStatus(tableStatus.reservation_id))
-      // .then((updatedTable) => {
-      //   console.log("updatedTable", updatedTable, "tables", tables);
-      // })
-      // .then(()=>setTableId(null))
+    if(tableId && tableId !== "none"){
+      reservation_id = Number(reservation_id);
+      updateTable(tableId, reservation_id)
       .then(()=>history.push("/dashboard"))
-      // .catch(setTablesError);
-      .catch(error=>console.log('error',error))
+      .catch(setTablesError);
+    }
   };
 
-  const tablesForm = tables.map((table) => {
+  const tablesForm = tables.map((table, index) => {
     // console.log("hello", table.reservation_id);
     return (
       <>
-        <option key={table.table_id} value={table.table_id}>
+        <option key={index} value={table.table_id}>
           {table.table_name} - {table.capacity}
         </option>
       </>
@@ -58,7 +54,8 @@ export default function SeatComponent() {
   return (
     // <ListTablesComp tables={tables}/>
     <form onSubmit={submitHandler}>
-      <select name="table_id" value={tableId} onChange={handleChange}>
+      <select required name="table_id" value={tableId} onChange={handleChange}>
+        <option  disabled>none</option>
         {tablesForm}
       </select>
       <button type="submit">Submit</button>

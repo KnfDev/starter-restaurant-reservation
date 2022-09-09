@@ -21,7 +21,7 @@ export default function ListTablesComp ({ tables }) {
       <p><b>Table Name: </b>{table.table_name}</p>
       <p><b>Table ID:</b> {table.table_id}</p>
       <p><b>Table Capacity: </b>{table.capacity}</p>
-      <p><b>Is Reserved: </b><span data-table-id-status={table.table_id}>{table.reservation_id ? `occupied` : `Free`}</span></p>
+      <p><b>Is Reserved: </b><span data-table-id-status={table.table_id}>{table.reservation_id ? `Occupied` : `Free`}</span></p>
       {table.reservation_id ? <button value={table.table_id} data-table-id-finish={table.table_id} onClick={clickHandler}>Finish</button> : null}
       <hr/>
       </div>

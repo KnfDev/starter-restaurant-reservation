@@ -25,7 +25,7 @@ async function reservationExists(req, res, next) {
   }
   next({
     status: 404,
-    message: `Reservation cannot be found.`
+    message: `Reservation cannot be found : ${req.params.reservation_Id}`
   })
 }
 
@@ -34,6 +34,18 @@ async function reservationExists(req, res, next) {
    res.status(201).json({ data });
  }
  
+ async function update(req, res) {
+  // console.log('in update')
+  const reservationId = req.params.reservation_Id
+  const resData = req.body.data
+  const updatedRes = {
+    ...resData,
+    reservation_id: reservationId
+  }
+  const data = await service.update(updatedRes)
+  res.json({data})
+ }
+
  function isNumber(propertyName) {
    return function (req, res, next) {
      const { data = {} } = req.body;
@@ -90,6 +102,7 @@ async function reservationExists(req, res, next) {
   const {data = {}} = req.body
   const day = new Date(`${data.reservation_date} ${data.reservation_time} `)
   const today = new Date() // empty argument = current
+  // console.log('today',today, 'day', day)
   if(day<today){
     return next({status: 400, message: 'Needs to be future date'})
   } 
@@ -108,6 +121,44 @@ async function reservationExists(req, res, next) {
   }
   return next()
  }
+
+ function resStatus(req,res,next) {
+  const {data = {}} = req.body
+  const status = data.status
+  if(!status){
+    return next()
+  }
+  if(status !== 'booked')
+  return next({
+    status: 400,
+    message: status
+  })
+  return next()
+ }
+
+  function isFinished(req,res,next) {
+  let reservation = res.locals.reservation
+  if(reservation.status === 'finished'){
+    return next({
+      status: 400,
+      message: reservation.status
+    })
+  }
+  return next()
+ }
+
+ function validStatus(req,res,next){
+  let validStatuses = [`booked`, `seated`, `finished`]
+  const {data = {}} = req.body
+  const status = data.status
+  if(!(validStatuses.includes(status))){
+    return next({
+      status: 400,
+      message: 'unknown status'
+    })
+  }
+  return next()
+ }
  
  module.exports = {
    list: [asyncErrorBoundary(list)],
@@ -116,17 +167,21 @@ async function reservationExists(req, res, next) {
      bodyDataHas("last_name"),
      bodyDataHas("mobile_number"),
      bodyDataHas("reservation_date"),
+    //  bodyDataHas("status"),
      isTuesday,
-     isFutureRes,
      isPeopleNumber,
      bodyDataHas("reservation_time"),
      bodyDataHas("people"),
      isNumber("reservation_date"),
      isTime("reservation_time"),
+     isFutureRes,
      openHours,
+     resStatus,
      asyncErrorBoundary(create),
    ],
    read: [
     asyncErrorBoundary(reservationExists), read
-   ]
+   ],
+
+   update: [reservationExists, isFinished, validStatus, update]
  };
