@@ -4,10 +4,10 @@ import Dashboard from "../dashboard/Dashboard";
 import NotFound from "./NotFound";
 import NewReservation from "../reservations/NewReservation";
 import NewTable from "../table/NewTable";
-import SeatComponent from "../table/SeatComponent";
+import SeatComponent from "../dashboard/SeatComponent";
 import useQuery from "../utils/useQuery";
 import { today } from "../utils/date-time";
-
+import SearchComponent from "../reservations/SearchComponent";
 // import { today } from "../utils/date-time";
 
 /**
@@ -21,7 +21,6 @@ function Routes() {
  
   const query = useQuery();
   const date = query.get("date") || today();
-  // const [date, setDate] = useState(date2 ? date2 : today());
 
   return (
     <Switch>
@@ -32,7 +31,6 @@ function Routes() {
         <Redirect to={"/dashboard"} />
       </Route>
       <Route path="/dashboard">
-        {/* {date2? <Dashboard date={date2} setDate={setDate}/> : <Dashboard date={date} setDate={setDate}/>} */}
         <Dashboard date={date}/>
       </Route>
       <Route path="/reservations/new">
@@ -43,6 +41,9 @@ function Routes() {
       </Route>
       <Route path="/reservations/:reservation_id/seat">
         <SeatComponent/>
+      </Route>
+      <Route path="/search">
+        <SearchComponent/>
       </Route>
       <Route>
         <NotFound />

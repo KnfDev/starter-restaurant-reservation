@@ -1,32 +1,31 @@
 
-export default function ListResComp({ reservations, currentRes, setCurrentRes }) {
-  // console.log('listResComp',reservations, 'currentRes',currentRes);
-  console.log(reservations)
+export default function ListResComp({ reservations }) {
   let list = reservations.map((reservation) => {
+    let {reservation_id, last_name, first_name, people, mobile_number, status, reservation_time, reservation_date} = reservation
     return (
       <div key={reservation.reservation_id}>
         <p>
-          <b>Reservation Date</b> : {reservation.reservation_date}
+          <b>Reservation Date</b> : {reservation_date}
         </p>
         <p>
-          <b>Guest Name</b> : {reservation.first_name} {reservation.last_name}
+          <b>Guest Name</b> : {first_name} {last_name}
         </p>
         <p>
-          <b>Party Size</b> : {reservation.people}
+          <b>Party Size</b> : {people}
         </p>
         <p>
-          <b>Contact</b> : {reservation.mobile_number}
+          <b>Contact</b> : {mobile_number}
         </p>
         <p>
-          <b>Reservation Time</b> : {reservation.reservation_time}
+          <b>Reservation Time</b> : {reservation_time}
         </p>
         <p>
-          <b>Reservation ID</b>: {reservation.reservation_id}
+          <b>Reservation ID</b>: {reservation_id}
         </p>
-        <a href={`/reservations/${reservation.reservation_id}/seat`}>
-          {/* <button>Seat</button> */}
-          Seat
-        </a>
+        <p data-reservation-id-status={reservation_id}>
+          <b>Reservation Status</b>: {status}
+        </p>
+        { status!=='seated' ? <a href={`/reservations/${reservation_id}/seat`}><button>Seat</button></a> : null }
         <hr />
       </div>
     );
@@ -35,7 +34,6 @@ export default function ListResComp({ reservations, currentRes, setCurrentRes })
     <>
       <div>
         {list}
-        {/* {reservations.length === 0 ? list : "There are no reservations for this date"} */}
       </div>
     </>
   );

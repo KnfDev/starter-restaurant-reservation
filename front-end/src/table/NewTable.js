@@ -15,16 +15,16 @@ export default function NewTable() {
     capacity: "",
   });
 
-  useEffect(loadTables, []);
+  // useEffect(loadTables, []);
   
-  function loadTables() {
-    const abortController = new AbortController();
-    setTablesError(null);
-    listTables(abortController.signal)
-    .then(setTables)
-    .catch(setTablesError);
-    return () => abortController.abort();
-  }
+  // function loadTables() {
+  //   const abortController = new AbortController();
+  //   setTablesError(null);
+  //   listTables(abortController.signal)
+  //   .then(setTables)
+  //   .catch(setTablesError);
+  //   return () => abortController.abort();
+  // }
 
   const handleChange = (event) => {
     const { target } = event;

@@ -21,8 +21,7 @@ function Dashboard() {
   const [tables, setTables] = useState([]);
   const query = useQuery();
   const date = query.get("date") || today();
-  // const [date, setDate] = useState(date2 ? date2 : today());
-  const [currentRes, setCurrentRes] = useState()
+ 
   const history = useHistory()
 
   useEffect(loadDashboard, [date]);
@@ -59,8 +58,6 @@ function Dashboard() {
         {reservations.length !== 0 ? (
           <ListResComp 
           reservations={reservations}
-          currentRes={currentRes}
-          setCurrentRes={setCurrentRes}
            />
         ) : (
           `There are no reservations today`
@@ -71,7 +68,7 @@ function Dashboard() {
       <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ErrorAlert error={reservationsError} />
       <hr/>
-      <ListTablesComp tables={tables} setTables={setTables}/>
+      <ListTablesComp tables={tables} />
       <ErrorAlert error={tablesError} />
     </main>
   );

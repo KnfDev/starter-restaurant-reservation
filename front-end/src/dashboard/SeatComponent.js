@@ -54,7 +54,7 @@ export default function SeatComponent() {
   return (
     // <ListTablesComp tables={tables}/>
     <form onSubmit={submitHandler}>
-      <select required name="table_id" value={tableId} onChange={handleChange}>
+      <select required name="table_id" onChange={handleChange}>
         <option  disabled>none</option>
         {tablesForm}
       </select>

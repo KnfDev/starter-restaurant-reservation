@@ -6,11 +6,24 @@
  
  
  async function list(req, res) {
-   const query = req.query.date;
-     const data = query ? await service.listDate(query) : await service.list();
-   res.json({
-     data
-   });
+   const date = req.query.date
+   const mobile = req.query.mobile_number
+  //  console.log('mobile',mobile)
+   if(date){
+     const data = await service.listDate(date)
+     return res.json({
+       data
+      });
+    }
+    if(mobile){
+      const data = await service.listMobile(mobile)
+      return res.json({
+        data
+      })
+    } else {
+      const data = await service.list()
+      return res.json({data})
+    }
  }
 
  async function read(req, res) {
@@ -23,7 +36,7 @@ async function reservationExists(req, res, next) {
     res.locals.reservation = reservation;
     return next()
   }
-  next({
+  return next({
     status: 404,
     message: `Reservation cannot be found : ${req.params.reservation_Id}`
   })
@@ -65,7 +78,7 @@ async function reservationExists(req, res, next) {
           //  if (Number(isTime) < 1030 || Number(isTime) > 930) 
        return next();
      }
-     next({ status: 400, message: `${propertyName}` });
+     return next({ status: 400, message: `${propertyName}` });
    };
  }
  
@@ -74,7 +87,7 @@ async function reservationExists(req, res, next) {
      if (Number.isInteger(data.people)) {
        return next();
      }
-     next({ status: 400, message: `people is not a number` });
+     return next({ status: 400, message: `people is not a number` });
  }
  
  function bodyDataHas(propertyName) {
@@ -159,9 +172,18 @@ async function reservationExists(req, res, next) {
   }
   return next()
  }
+
+ function mobileNoExists(req,res,next){
+  const query = req.query
+  const reservation = res.locals.reservation
+  console.log(reservation)
+  // if(reservation)
+  return next()
+ }
  
  module.exports = {
-   list: [asyncErrorBoundary(list)],
+   list: [
+    asyncErrorBoundary(list)],
    create: [
      bodyDataHas("first_name"),
      bodyDataHas("last_name"),

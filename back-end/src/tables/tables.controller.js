@@ -105,9 +105,9 @@ function occupied(req,res,next){
 
 async function destroy(req, res) {
   const tableData = res.locals.table
-  console.log(res.locals.table)
+  // console.log(res.locals.table)
   const data = await service.unSeatTable(tableData)
-  console.log(`removeResId`, data)
+  // console.log(`removeResId`, data)
   res.json({ data })
 }
 

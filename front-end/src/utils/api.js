@@ -73,6 +73,12 @@ export async function listTables( signal ) {
   return await fetchJson(url, { headers, signal }, [])
 }
 
+export async function listResByPhone( signal ) {
+  const url = new URL(`${API_BASE_URL}`)
+  return await fetchJson(url, {headers, signal}, [])
+}
+
+
 export async function createRes(res, signal) {
   const url = `${API_BASE_URL}/reservations`;
   const options = {
