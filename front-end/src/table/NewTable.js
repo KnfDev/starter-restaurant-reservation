@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createTable, listTables } from "../utils/api";
+import { createTable } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
 
 export default function NewTable() {
   const history = useHistory();
   const [tables, setTables] = useState([])
-  const [tablesError, setTablesError] = useState(null);
   const [errors, setErrors] = useState(null);
 
   const [newTable, setNewTable] = useState({
@@ -69,7 +68,6 @@ export default function NewTable() {
           />
         </div>
         <ErrorAlert error={errors} />
-        <ErrorAlert error={tablesError} />
         <button type="submit">Submit</button>
         <button
           onClick={() => {

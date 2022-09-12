@@ -64,7 +64,7 @@ function Dashboard() {
         )}
       </div>
       <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>Previous</button>
-      <button onClick={() => today()}>Today</button>
+      <button onClick={() => history.push(`/dashboard?date=${today()}`)}>Today</button>
       <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ErrorAlert error={reservationsError} />
       <hr/>

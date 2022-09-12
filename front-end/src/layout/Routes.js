@@ -8,6 +8,8 @@ import SeatComponent from "../dashboard/SeatComponent";
 import useQuery from "../utils/useQuery";
 import { today } from "../utils/date-time";
 import SearchComponent from "../reservations/SearchComponent";
+import EditReservationsComponent from "../reservations/EditReservationComponent";
+
 // import { today } from "../utils/date-time";
 
 /**
@@ -44,6 +46,9 @@ function Routes() {
       </Route>
       <Route path="/search">
         <SearchComponent/>
+      </Route>
+      <Route path="/reservations/:reservation_id/edit">
+        <EditReservationsComponent />
       </Route>
       <Route>
         <NotFound />

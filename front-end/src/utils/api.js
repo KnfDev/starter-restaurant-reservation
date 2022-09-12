@@ -32,7 +32,7 @@ headers.append("Content-Type", "application/json");
  async function fetchJson(url, options, onCancel) {
   try {
     const response = await fetch(url, options);
-
+    console.log('response**', response)
     if (response.status === 204) {
       return null;
     }
@@ -72,6 +72,10 @@ export async function listTables( signal ) {
   const url = new URL(`${API_BASE_URL}/tables`);
   return await fetchJson(url, { headers, signal }, [])
 }
+export async function editRes( resId, signal ) {
+  const url = new URL(`${API_BASE_URL}/reservations/${resId}`);
+  return await fetchJson(url, { headers, signal }, [])
+}
 
 export async function listResByPhone( signal ) {
   const url = new URL(`${API_BASE_URL}`)
@@ -100,8 +104,8 @@ export async function createTable(table, signal) {
   };
   return await fetchJson(url, options);
 }
-export async function updateTable(tableStatus, reservation_id, signal) {
-  const url = `${API_BASE_URL}/tables/${tableStatus}/seat`;
+export async function updateTable(tableId, reservation_id, signal) {
+  const url = `${API_BASE_URL}/tables/${tableId}/seat`;
   const options = {
     method: "PUT",
     headers,
@@ -109,6 +113,31 @@ export async function updateTable(tableStatus, reservation_id, signal) {
     signal,
   };
   return await fetchJson(url, options, {});
+}
+export async function updateRes(resData, reservation_Id, signal) {
+  // console.log('resData',resData, reservation_Id)
+  const url = `${API_BASE_URL}/reservations/${reservation_Id}`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: resData }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}
+
+export async function updateResStatus( reservation_Id, signal) {
+  console.log('resData', reservation_Id)
+  const url = `${API_BASE_URL}/reservations/${reservation_Id}/status`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: {status: 'cancelled'} }),
+    signal,
+  };
+  let result = await fetchJson(url, options, {});
+  console.log('***result***',result)
+  return result
 }
 export async function updateResId(tableId, reservation_id, signal) {
   const url = `${API_BASE_URL}/tables/${tableId}/seat`;
