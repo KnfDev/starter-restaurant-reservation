@@ -6,12 +6,6 @@ import ListTablesComp from "./ListTablesComp";
 import { today, next, previous } from "../utils/date-time";
 import useQuery from "../utils/useQuery";
 import { useHistory } from "react-router-dom"
-/**
- * Defines the dashboard page.
- * @param date
- *  the date for which the user wants to view reservations.
- * @returns {JSX.Element}
- */
 
 function Dashboard() {
 
@@ -58,6 +52,7 @@ function Dashboard() {
         {reservations.length !== 0 ? (
           <ListResComp 
           reservations={reservations}
+          loadDashboard={loadDashboard}
            />
         ) : (
           `There are no reservations today`
@@ -68,7 +63,7 @@ function Dashboard() {
       <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ErrorAlert error={reservationsError} />
       <hr/>
-      <ListTablesComp tables={tables} />
+      <ListTablesComp tables={tables} loadTables={loadTables} loadDashboard={loadDashboard} />
       <ErrorAlert error={tablesError} />
     </main>
   );

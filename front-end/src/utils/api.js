@@ -32,7 +32,6 @@ headers.append("Content-Type", "application/json");
  async function fetchJson(url, options, onCancel) {
   try {
     const response = await fetch(url, options);
-    console.log('response**', response)
     if (response.status === 204) {
       return null;
     }
@@ -127,7 +126,6 @@ export async function updateRes(resData, reservation_Id, signal) {
 }
 
 export async function updateResStatus( reservation_Id, signal) {
-  console.log('resData', reservation_Id)
   const url = `${API_BASE_URL}/reservations/${reservation_Id}/status`;
   const options = {
     method: "PUT",
@@ -136,7 +134,6 @@ export async function updateResStatus( reservation_Id, signal) {
     signal,
   };
   let result = await fetchJson(url, options, {});
-  console.log('***result***',result)
   return result
 }
 export async function updateResId(tableId, reservation_id, signal) {

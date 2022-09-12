@@ -1,16 +1,16 @@
-import { useHistory } from "react-router"
 import { updateResId } from "../utils/api"
 
-export default function ListTablesComp ({ tables }) {
-  const history = useHistory()
+export default function ListTablesComp ({ tables, loadTables, loadDashboard }) {
+
 
   function clickHandler(event){
     let tableId = event.target.value
     tableId = Number(tableId)
-    console.log(event.target.value)
+    // console.log(event.target.value)
     if(window.confirm("Is this table ready to seat new guests?")===true){
       updateResId(tableId)
-      .then(()=>history.go(0))
+      .then(()=>loadTables())
+      .then(()=>loadDashboard())
       .catch(error=>console.log('error',error))
     }
   }

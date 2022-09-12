@@ -21,28 +21,19 @@ export default function EditReservationsComponent() {
     return () => abortController.abort();
   }
 
-  // console.log('editResComp',newReservation);
-
-  // const handleChange = (event) => {
-  //   const { target } = event;
-  //   const value = target.value;
-  //   // console.log('value',[target.name],value)
-  //   setNewReservation({ ...newReservation, [target.name]: value });
-  //   // console.log("value", [target.name], value);
-  // };
-
+  // console.log('editResComp',newReservation)
   // console.log('newres',newReservation)
   // console.log(reservation)
+  
   const submitHandler = (event, newReservation) => {
     // console.log(event)
     event.preventDefault();
     newReservation.people = Number(newReservation.people);
     // console.log('line52',params.reservation_id)
     updateRes(newReservation, params.reservation_id)
-      .then(() => {
-        history.go("-1");
-      })
-      .catch(setErrors);
+      .then(()=>history.push(`/dashboard/?date=${newReservation.reservation_date}`))
+      // .catch(setErrors);
+      .catch((errors)=>console.log('string',errors))
   };
 
   return (

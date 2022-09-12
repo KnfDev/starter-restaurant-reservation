@@ -1,6 +1,8 @@
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
+// import { formatDate } from "../utils/format-reservation-date"
+import { formatAsDate } from "../utils/date-time";
 
 export default function FormComponent({
   submitHandler,
@@ -17,17 +19,23 @@ export default function FormComponent({
     people: "",
   });
 
-  useEffect(() => setFormData(newReservation), [newReservation]);
+  useEffect(() => {
+    setFormData({
+      ...newReservation,
+      reservation_date: newReservation.reservation_date
+        ? formatAsDate(newReservation.reservation_date)
+        : "",
+    });
+  }, [newReservation]);
   //()=>setFormData is invoking the full function in use effect, while just setFormData would just be giving the value of setFormData and no function
 
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;
-    // console.log('value',[target.name],value)
     setFormData({ ...formData, [target.name]: value });
   };
   // console.log("formComponent", formData, newReservation);
-
+  // console.log("line30 of formComponent", formData);
   return (
     <>
       <form onSubmit={(e) => submitHandler(e, formData)}>
@@ -89,7 +97,7 @@ export default function FormComponent({
         <button type="submit">Submit</button>
 
         <button
-        data-reservation-id-cancel={formData.reservation_id}
+          data-reservation-id-cancel={formData.reservation_id}
           type="button"
           onClick={() => {
             history.go("-1");

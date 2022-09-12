@@ -1,28 +1,20 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
 import { updateResStatus } from "../utils/api"
 
-export default function ListResComp({ reservations }) {
-  const [currentRes, setCurrentRes] = useState()
-  const history = useHistory()
+export default function ListResComp({ reservations, loadDashboard }) {
+
 
   function onCancel(e,reservation){
     e.preventDefault()
     if(window.confirm("Do you want to cancel this reservation?")){
-      // setCurrentRes(reservation.reservation_id)
-      // console.log('cancelbutton res',currentRes)
       updateResStatus(reservation.reservation_id)
-      // .then(()=>history.push(`/dashboard?date=${reservation.reservation_date}`))
-      .then(()=>history.go(0))
+      .then(()=>loadDashboard())
     }
   }
 
   let list = reservations.map((reservation) => {
-  // filter((reservation)=>reservation.status!=='cancelled').
-
-
+  
     // console.log('newList',newlist)
-    // setCurrentRes(reservation)
+
     let {reservation_id, last_name, first_name, people, mobile_number, status, reservation_time, reservation_date} = reservation
     return (
       <div key={reservation.reservation_id}>

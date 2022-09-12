@@ -24,7 +24,7 @@ export default function SeatComponent() {
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;
-    console.log("value", [target.name], value);
+    // console.log("value", [target.name], value);
     // setTableStatus({ ...tableStatus, table_id: value });
     setTableId(value);
     // console.log("value", [target.name], value);

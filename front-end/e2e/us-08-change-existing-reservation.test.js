@@ -85,24 +85,24 @@ describe("US-08 - Change an existing reservation - E2E", () => {
             `Cancel button for reservation_id ${reservation.reservation_id} was not found.`
           );
         }
-        // console.log(88)
+
         page.on("dialog", async (dialog) => {
           expect(dialog.message()).toContain(
             "Do you want to cancel this reservation?"
           );
           await dialog.accept();
         });
-        // console.log(95,cancelButton)
+
         await cancelButton.click();
 
         await page.waitForResponse((response) => {
           return response.url().includes("/reservations?date=");
         });
-        console.log('test',101)
+
         await page.waitForTimeout(500);
 
         expect(await page.$(cancelButtonSelector)).toBeNull();
-        console.log('string',106)
+
       });
       test("then clicking cancel makes no changes", async () => {
         await page.screenshot({
@@ -176,7 +176,9 @@ describe("US-08 - Change an existing reservation - E2E", () => {
 
     test("filling and submitting form updates the reservation", async () => {
       const firstNameInput = await page.$("input[name=first_name]");
+
       await firstNameInput.click({ clickCount: 3 });
+
       await firstNameInput.type("John");
 
       const [submitButton] = await page.$x(
@@ -205,6 +207,7 @@ describe("US-08 - Change an existing reservation - E2E", () => {
       });
 
       await expect(page).toMatch(/John/);
+
     });
   });
 });

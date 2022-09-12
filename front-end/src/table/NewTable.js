@@ -14,17 +14,6 @@ export default function NewTable() {
     capacity: "",
   });
 
-  // useEffect(loadTables, []);
-  
-  // function loadTables() {
-  //   const abortController = new AbortController();
-  //   setTablesError(null);
-  //   listTables(abortController.signal)
-  //   .then(setTables)
-  //   .catch(setTablesError);
-  //   return () => abortController.abort();
-  // }
-
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;

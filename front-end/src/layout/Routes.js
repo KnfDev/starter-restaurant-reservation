@@ -10,8 +10,6 @@ import { today } from "../utils/date-time";
 import SearchComponent from "../reservations/SearchComponent";
 import EditReservationsComponent from "../reservations/EditReservationComponent";
 
-// import { today } from "../utils/date-time";
-
 /**
  * Defines all the routes for the application.
  *
