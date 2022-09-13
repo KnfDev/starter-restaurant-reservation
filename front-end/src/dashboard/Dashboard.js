@@ -4,7 +4,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 import ListResComp from "./ListResComp";
 import ListTablesComp from "./ListTablesComp";
 import { today, next, previous } from "../utils/date-time";
-import useQuery from "../utils/useQuery";
+import useQuery from "../utils/useQuery";//**
 import { useHistory } from "react-router-dom"
 
 function Dashboard() {
@@ -13,15 +13,13 @@ function Dashboard() {
   const [reservationsError, setReservationsError] = useState(null);
   const [tablesError, setTablesError] = useState(null);
   const [tables, setTables] = useState([]);
-  const query = useQuery();
-  const date = query.get("date") || today();
+  const query = useQuery();//**
+  const date = query.get("date") || today();//**
  
   const history = useHistory()
 
   useEffect(loadDashboard, [date]);
-  // console.log(date)
-  
-  function loadDashboard() {
+  function loadDashboard() { //needs to be renamed to loadReservations
     const abortController = new AbortController();
     setReservationsError(null);
     listReservations({ date }, abortController.signal)
@@ -31,13 +29,12 @@ function Dashboard() {
   }
   
   useEffect(loadTables, []);
-  
   function loadTables() {
     const abortController = new AbortController();
-    setTablesError(null);
-    listTables(abortController.signal)
-    .then(setTables)
-    .catch(setTablesError);
+    setTablesError(null);//
+    listTables(abortController.signal)//
+    .then(setTables)//
+    .catch(setTablesError);//
     return () => abortController.abort();
   }
 

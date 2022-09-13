@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import ErrorAlert from "../layout/ErrorAlert";
 import { listTables, updateTable } from "../utils/api";
-// import ListTablesComp from "../dashboard/ListTablesComp"
+
 export default function SeatComponent() {
   const history = useHistory();
   const [tableId, setTableId] = useState();
   const [tablesError, setTablesError] = useState(null);
   const [tables, setTables] = useState([]);
 
-  useEffect(loadTables, []);
-
+  
   let params = useParams();
   let reservation_id = params.reservation_id;
-
+  
+  useEffect(loadTables, []);
   function loadTables() {
     const abortController = new AbortController();
     setTablesError(null);
@@ -27,13 +27,13 @@ export default function SeatComponent() {
     // console.log("value", [target.name], value);
     // setTableStatus({ ...tableStatus, table_id: value });
     setTableId(value);
-    // console.log("value", [target.name], value);
+    console.log("value", [target.name], value);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
     if(tableId && tableId !== "none"){
-      reservation_id = Number(reservation_id);
+      // reservation_id = Number(reservation_id);
       updateTable(tableId, reservation_id)
       .then(()=>history.push("/dashboard"))
       .catch(setTablesError);
@@ -59,7 +59,7 @@ export default function SeatComponent() {
         {tablesForm}
       </select>
       <button type="submit">Submit</button>
-      <button type="button" onClick={() => history.goBack()}>
+      <button type="button" onClick={() => history.go(-1)}>
         Cancel
       </button>
       <ErrorAlert error={tablesError} />

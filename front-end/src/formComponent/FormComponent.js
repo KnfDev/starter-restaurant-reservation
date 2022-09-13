@@ -1,7 +1,6 @@
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
-// import { formatDate } from "../utils/format-reservation-date"
 import { formatAsDate } from "../utils/date-time";
 
 export default function FormComponent({
@@ -9,15 +8,11 @@ export default function FormComponent({
   newReservation,
   errors,
 }) {
+   
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    mobile_number: "",
-    reservation_date: "",
-    reservation_time: "",
-    people: "",
-  });
+  const [formData, setFormData] = useState(newReservation);
+
+  // console.log('string',newReservation,'string2',formData)
 
   useEffect(() => {
     setFormData({
@@ -43,7 +38,7 @@ export default function FormComponent({
           <input
             name="first_name"
             value={formData.first_name}
-            // placeholder={formData.first_name || "First Name"}
+            placeholder={formData.first_name || "First Name"}
             onChange={handleChange}
             required
           />
@@ -52,7 +47,7 @@ export default function FormComponent({
           <input
             name="last_name"
             value={formData.last_name}
-            // placeholder={formData.last_name || "Last Name"}
+            placeholder={formData.last_name || "Last Name"}
             onChange={handleChange}
             required
           />
@@ -62,7 +57,7 @@ export default function FormComponent({
             type="string"
             name="mobile_number"
             value={formData.mobile_number}
-            // placeholder={formData.mobile_number || "Mobile Number"}
+            placeholder={formData.mobile_number || "Mobile Number"}
             onChange={handleChange}
             required
           />

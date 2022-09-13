@@ -9,24 +9,23 @@ export default function NewTable() {
   const [tables, setTables] = useState([])
   const [errors, setErrors] = useState(null);
 
+  //v--This use state is for the handle change--v//
   const [newTable, setNewTable] = useState({
     table_name: "",
     capacity: "",
   });
-
-  const handleChange = (event) => {
+  const handleChange = (event) => { //handles the input in the form html
     const { target } = event;
     const value = target.value;
     setNewTable({ ...newTable, [target.name]: value });
-    // console.log("value", [target.name], value);
+    // console.log("value",newTable, [target.name], value);
   };
+//^--One segment of code--^//
 
   const submitHandler = (event) => {
     event.preventDefault();
     newTable.capacity = Number(newTable.capacity);
-    // console.log(newTable)
-    createTable(newTable)
-    // .then(setTables(newTable))
+    createTable(newTable)//a function in my utils folder
     //create call back to receive new table for id from create table
       .then((updatedTable)=>{
         setTables([...tables,updatedTable])

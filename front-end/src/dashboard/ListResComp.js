@@ -39,10 +39,18 @@ export default function ListResComp({ reservations, loadDashboard }) {
         <p data-reservation-id-status={reservation_id}>
           <b>Reservation Status</b>: {status}
         </p>
-        { status!=='seated' ? <a href={`/reservations/${reservation_id}/seat`}><button>Seat</button></a> : null }
+
+        { status!=='seated' ? 
+        
+        <a href={`/reservations/${reservation_id}/seat`}><button>Seat</button></a> 
+
+        : null }
+
+
         <a href={`/reservations/${reservation_id}/edit`}>
         <button>Edit</button>
         </a>
+
         <button data-reservation-id-cancel={reservation.reservation_id} onClick={(e)=>onCancel(e,reservation)}>Cancel</button>
         <hr />
       </div>

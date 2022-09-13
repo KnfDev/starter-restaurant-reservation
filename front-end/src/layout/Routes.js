@@ -5,8 +5,6 @@ import NotFound from "./NotFound";
 import NewReservation from "../reservations/NewReservation";
 import NewTable from "../table/NewTable";
 import SeatComponent from "../dashboard/SeatComponent";
-import useQuery from "../utils/useQuery";
-import { today } from "../utils/date-time";
 import SearchComponent from "../reservations/SearchComponent";
 import EditReservationsComponent from "../reservations/EditReservationComponent";
 
@@ -18,9 +16,6 @@ import EditReservationsComponent from "../reservations/EditReservationComponent"
  * @returns {JSX.Element}
  */
 function Routes() {
- 
-  const query = useQuery();
-  const date = query.get("date") || today();
 
   return (
     <Switch>
@@ -31,7 +26,7 @@ function Routes() {
         <Redirect to={"/dashboard"} />
       </Route>
       <Route path="/dashboard">
-        <Dashboard date={date}/>
+        <Dashboard />
       </Route>
       <Route path="/reservations/new">
         <NewReservation/>

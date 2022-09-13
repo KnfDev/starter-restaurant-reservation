@@ -3,17 +3,18 @@ import { useHistory } from "react-router-dom";
 import FormComponent from "../formComponent/FormComponent";
 import { createRes } from "../utils/api";
 export default function NewReservation() {
+
   const history = useHistory();
   const [errors, setErrors] = useState(null);
 
-  const [newReservation, setNewReservation] = useState({
-    first_name: "",
-    last_name: "",
-    mobile_number: "",
-    reservation_date: "",
-    reservation_time: "",
-    people: "",
-  });
+  const newReservation = {
+  first_name: "",
+  last_name: "",
+  mobile_number: "",
+  reservation_date: "",
+  reservation_time: "",
+  people: "",
+}
   
 
   const submitHandler = (event, newReservation) => {
@@ -30,7 +31,6 @@ export default function NewReservation() {
   return (
     <FormComponent
     submitHandler={submitHandler}
-    // handleChange={handleChange}
     errors={errors}
     newReservation={newReservation}
     />
