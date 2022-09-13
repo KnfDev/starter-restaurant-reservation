@@ -1,44 +1,42 @@
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
-import { formatAsDate } from "../utils/date-time";
+// import { useEffect, useState } from "react";
+// import { formatAsDate } from "../utils/date-time";
 
 export default function FormComponent({
-  submitHandler,
   newReservation,
+  submitHandler,
+  setNewReservation,
   errors,
 }) {
    
   const history = useHistory();
-  const [formData, setFormData] = useState(newReservation);
+  // const [formData, setFormData] = useState(newReservation);
 
-  // console.log('string',newReservation,'string2',formData)
-
-  useEffect(() => {
-    setFormData({
-      ...newReservation,
-      reservation_date: newReservation.reservation_date
-        ? formatAsDate(newReservation.reservation_date)
-        : "",
-    });
-  }, [newReservation]);
+  // useEffect(() => {
+  //   setFormData({
+  //     ...newReservation,
+  //     reservation_date: newReservation.reservation_date
+  //       ? formatAsDate(newReservation.reservation_date)
+  //       : "",
+  //   });
+  // }, [newReservation]);
   //()=>setFormData is invoking the full function in use effect, while just setFormData would just be giving the value of setFormData and no function
 
   const handleChange = (event) => {
     const { target } = event;
     const value = target.value;
-    setFormData({ ...formData, [target.name]: value });
+    setNewReservation({ ...newReservation, [target.name]: value });
   };
-  // console.log("formComponent", formData, newReservation);
-  // console.log("line30 of formComponent", formData);
+
   return (
     <>
-      <form onSubmit={(e) => submitHandler(e, formData)}>
+      <form onSubmit={(e) => submitHandler(e, newReservation)}>
         <div>
           <input
             name="first_name"
-            value={formData.first_name}
-            placeholder={formData.first_name || "First Name"}
+            value={newReservation.first_name}
+            placeholder={newReservation.first_name || "First Name"}
             onChange={handleChange}
             required
           />
@@ -46,8 +44,8 @@ export default function FormComponent({
         <div>
           <input
             name="last_name"
-            value={formData.last_name}
-            placeholder={formData.last_name || "Last Name"}
+            value={newReservation.last_name}
+            placeholder={newReservation.last_name || "Last Name"}
             onChange={handleChange}
             required
           />
@@ -56,8 +54,8 @@ export default function FormComponent({
           <input
             type="string"
             name="mobile_number"
-            value={formData.mobile_number}
-            placeholder={formData.mobile_number || "Mobile Number"}
+            value={newReservation.mobile_number}
+            placeholder={newReservation.mobile_number || "Mobile Number"}
             onChange={handleChange}
             required
           />
@@ -66,7 +64,7 @@ export default function FormComponent({
           <input
             type="number"
             name="people"
-            value={formData.people}
+            value={newReservation.people}
             placeholder="Party Size"
             onChange={handleChange}
             required
@@ -76,7 +74,7 @@ export default function FormComponent({
           <input
             name="reservation_date"
             type="date"
-            value={formData.reservation_date}
+            value={newReservation.reservation_date}
             onChange={handleChange}
           />
         </div>
@@ -84,7 +82,7 @@ export default function FormComponent({
           <input
             type="time"
             name="reservation_time"
-            value={formData.reservation_time}
+            value={newReservation.reservation_time}
             onChange={handleChange}
           />
         </div>
@@ -92,7 +90,7 @@ export default function FormComponent({
         <button type="submit">Submit</button>
 
         <button
-          data-reservation-id-cancel={formData.reservation_id}
+          data-reservation-id-cancel={newReservation.reservation_id}
           type="button"
           onClick={() => {
             history.go("-1");

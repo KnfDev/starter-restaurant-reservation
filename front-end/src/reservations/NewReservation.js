@@ -7,14 +7,14 @@ export default function NewReservation() {
   const history = useHistory();
   const [errors, setErrors] = useState(null);
 
-  const newReservation = {
-  first_name: "",
-  last_name: "",
-  mobile_number: "",
-  reservation_date: "",
-  reservation_time: "",
-  people: "",
-}
+  const [newReservation,setNewReservation] = useState({
+    first_name: "",
+    last_name: "",
+    mobile_number: "",
+    reservation_date: "",
+    reservation_time: "",
+    people: "",
+  })
   
 
   const submitHandler = (event, newReservation) => {
@@ -32,6 +32,7 @@ export default function NewReservation() {
     <FormComponent
     submitHandler={submitHandler}
     errors={errors}
+    setNewReservation={setNewReservation}
     newReservation={newReservation}
     />
   )
