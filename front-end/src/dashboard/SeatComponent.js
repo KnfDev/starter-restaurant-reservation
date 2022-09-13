@@ -40,19 +40,18 @@ export default function SeatComponent() {
     }
   };
 
-  const tablesForm = tables.map((table, index) => {
+  const tablesForm = tables.map((table) => {
     // console.log("hello", table.reservation_id);
     return (
-      <>
-        <option key={index} value={table.table_id}>
+
+        <option key={table.table_id} value={table.table_id}>
           {table.table_name} - {table.capacity}
         </option>
-      </>
+
     );
   });
 
   return (
-    // <ListTablesComp tables={tables}/>
     <form onSubmit={submitHandler}>
       <select required name="table_id" onChange={handleChange}>
         <option>none</option>

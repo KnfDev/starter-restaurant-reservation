@@ -64,6 +64,7 @@ export default function FormComponent({
           <input
             type="number"
             name="people"
+            min="0"
             value={newReservation.people}
             placeholder="Party Size"
             onChange={handleChange}
