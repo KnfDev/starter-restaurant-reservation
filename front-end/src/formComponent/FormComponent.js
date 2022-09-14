@@ -8,8 +8,8 @@ export default function FormComponent({
   submitHandler,
   setNewReservation,
   errors,
+  title,
 }) {
-   
   const history = useHistory();
   // const [formData, setFormData] = useState(newReservation);
 
@@ -28,15 +28,15 @@ export default function FormComponent({
     const value = target.value;
     setNewReservation({ ...newReservation, [target.name]: value });
   };
-
   return (
-    <>
+    <div className="form-page">
+      <h1>{title}</h1>
       <form onSubmit={(e) => submitHandler(e, newReservation)}>
         <div>
           <input
             name="first_name"
             value={newReservation.first_name}
-            placeholder={newReservation.first_name || "First Name"}
+            placeholder={"First Name"}
             onChange={handleChange}
             required
           />
@@ -45,7 +45,7 @@ export default function FormComponent({
           <input
             name="last_name"
             value={newReservation.last_name}
-            placeholder={newReservation.last_name || "Last Name"}
+            placeholder={"Last Name"}
             onChange={handleChange}
             required
           />
@@ -55,7 +55,7 @@ export default function FormComponent({
             type="string"
             name="mobile_number"
             value={newReservation.mobile_number}
-            placeholder={newReservation.mobile_number || "Mobile Number"}
+            placeholder={"Mobile Number"}
             onChange={handleChange}
             required
           />
@@ -64,8 +64,8 @@ export default function FormComponent({
           <input
             type="number"
             name="people"
-            min="0"
-            max="12"
+            min="1"
+            max="20"
             value={newReservation.people}
             placeholder="Party Size"
             onChange={handleChange}
@@ -89,9 +89,8 @@ export default function FormComponent({
           />
         </div>
         <ErrorAlert error={errors} />
-        <button type="submit">Submit</button>
-
-        <button
+        <button className="btn btn-secondary m-2" type="submit">Submit</button>
+        <button className="btn btn-secondary m-2"
           data-reservation-id-cancel={newReservation.reservation_id}
           type="button"
           onClick={() => {
@@ -101,6 +100,6 @@ export default function FormComponent({
           Cancel
         </button>
       </form>
-    </>
+    </div>
   );
 }

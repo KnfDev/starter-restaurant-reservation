@@ -1,4 +1,62 @@
 .side-bar {
   background-color: #393a44;
-  min-width: 200px;
+  background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: max-content;
+  min-width: max-content;
+  font-size: 24px;
+}
+
+
+
+.dash-h1 {
+  font-family: 'Montserrat';
+  font-size: 48px;
+  font-weight: bolder;
+}
+
+.periodic {
+  font-size:36px;
+}
+
+.dashboard-header {
+  color:aliceblue;
+  background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
+  /* background-color:rgb(233, 236, 236); */
+}
+
+.css-test{
+  background-color:rgb(233, 236, 236);
+}
+
+.reservations-tables{
+  background-color: aliceblue;
+  border-radius: 7px;
+}
+
+.form-page {
+  background-color:rgb(233, 236, 236);
+  min-height: 100vmax;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+input {
+  width: 200px;
+  margin:3px;
+}
+
+.finish {
+  display: flex;
+  justify-content: space-between;
+}
+
+.finish-button {
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

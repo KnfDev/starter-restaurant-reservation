@@ -30,16 +30,20 @@ export default function SearchComponent(){
   };
 
   return (
-    <>
-    <form
+    <div className="form-page">
+      <div className="dashboard-header my-4 py-4">
+      <h1>Search for customer</h1>
+      </div>
+    <form className="reservations-tables py-2 mb-4"
     onSubmit={submitHandler}
     >
-      <label>Mobile Number</label> <input onChange={handleChange} type="search" name="mobile_number" placeholder="Enter a customer's phone number" required></input> <button type="submit">Find</button>
+      <label><b>Mobile Number</b> :</label> <input onChange={handleChange} type="search" name="mobile_number" placeholder="Enter a customer's phone number" required></input> 
+      <button className="btn btn-secondary mb-1 ml-1" type="submit">Find</button>
     </form>
     <div>
     {reservations.length !== 0 ? <ListResComp reservations={reservations}/> : null}  
     {searched === true && reservations.length === 0 ? `No reservations found with this phone number` : null}
     </div>
-    </>
+    </div>
   )
 }

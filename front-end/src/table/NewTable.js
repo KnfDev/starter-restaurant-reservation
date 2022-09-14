@@ -3,10 +3,9 @@ import { useHistory } from "react-router-dom";
 import { createTable } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
-
 export default function NewTable() {
   const history = useHistory();
-  const [tables, setTables] = useState([])
+  const [tables, setTables] = useState([]);
   const [errors, setErrors] = useState(null);
 
   //v--This use state is for the handle change--v//
@@ -14,30 +13,32 @@ export default function NewTable() {
     table_name: "",
     capacity: "",
   });
-  const handleChange = (event) => { //handles the input in the form html
+  const handleChange = (event) => {
+    //handles the input in the form html
     const { target } = event;
     const value = target.value;
     setNewTable({ ...newTable, [target.name]: value });
     // console.log("value",newTable, [target.name], value);
   };
-//^--One segment of code--^//
+  //^--One segment of code--^//
 
   const submitHandler = (event) => {
     event.preventDefault();
     newTable.capacity = Number(newTable.capacity);
-    createTable(newTable)//a function in my utils folder
-    //create call back to receive new table for id from create table
-      .then((updatedTable)=>{
-        setTables([...tables,updatedTable])
+    createTable(newTable) //a function in my utils folder
+      //create call back to receive new table for id from create table
+      .then((updatedTable) => {
+        setTables([...tables, updatedTable]);
       })
-      .then(()=>history.push("/"))
+      .then(() => history.push("/"))
       .catch(setErrors);
   };
 
   return (
-    <>
+    <div className="form-page">
       <form onSubmit={submitHandler}>
         <div>
+          <h1>Create New Table</h1>
           <input
             type="text"
             name="table_name"
@@ -56,8 +57,8 @@ export default function NewTable() {
           />
         </div>
         <ErrorAlert error={errors} />
-        <button type="submit">Submit</button>
-        <button
+        <button className="btn btn-secondary m-1" type="submit">Submit</button>
+        <button className="btn btn-secondary m-1"
           onClick={() => {
             history.go("-1");
           }}
@@ -65,6 +66,6 @@ export default function NewTable() {
           Cancel
         </button>
       </form>
-    </>
+    </div>
   );
 }

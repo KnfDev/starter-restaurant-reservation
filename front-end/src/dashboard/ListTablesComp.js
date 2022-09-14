@@ -1,6 +1,7 @@
 import { updateResId } from "../utils/api";
 
 export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
+  
   function clickHandler(event) {
     let tableId = event.target.value;
     tableId = Number(tableId);
@@ -14,8 +15,19 @@ export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
   }
 
   const list = tables.map((table) => {
+
+    const finish = <div className="finish">
+    <span><b>Reservation Id: </b>{table.reservation_id}</span> <button className="btn btn-danger finish-button"
+    value={table.table_id}
+    data-table-id-finish={table.table_id}
+    onClick={clickHandler}
+    >
+    Finish
+  </button>
+    </div>
+
     return (
-      <div key={table.table_id}>
+      <div key={table.table_id} className="col-5 border pt-2 reservations-tables mb-4">
         <p>
           <b>Table Name: </b>
           {table.table_name}
@@ -30,22 +42,14 @@ export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
         </p>
         
         <p>
-          <b>Is Reserved: </b>
+          <b>Table Status: </b>
           <span data-table-id-status={table.table_id}>
             {table.reservation_id ? `Occupied` : `Free`}
           </span>
         </p>
 
-        {table.reservation_id ? (
-          <button
-            value={table.table_id}
-            data-table-id-finish={table.table_id}
-            onClick={clickHandler}
-          >
-            Finish
-          </button>
-        ) : null}
-        <hr />
+        {table.reservation_id ? finish
+         : null}
       </div>
     );
   });

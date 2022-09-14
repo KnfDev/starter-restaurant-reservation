@@ -16,6 +16,7 @@ export default function EditReservationsComponent() {
     people: "",
   }); //current
   const [errors, setErrors] = useState(null);
+  const title = "Edit Reservation"
 
   useEffect(loadDashboard, [params.reservation_id]);
 
@@ -48,6 +49,7 @@ export default function EditReservationsComponent() {
       newReservation={newReservation}
       setNewReservation={setNewReservation}
       errors={errors}
+      title={title}
     />
   );
 }

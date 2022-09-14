@@ -16,6 +16,7 @@ export default function NewReservation() {
     people: "",
   })
   
+  const title = "Make New Reservation"
 
   const submitHandler = (event, newReservation) => {
     // console.log('newResComp',newReservation)
@@ -34,6 +35,7 @@ export default function NewReservation() {
     errors={errors}
     setNewReservation={setNewReservation}
     newReservation={newReservation}
+    title={title}
     />
   )
 }

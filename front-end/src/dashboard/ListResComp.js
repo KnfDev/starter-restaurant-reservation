@@ -13,11 +13,10 @@ export default function ListResComp({ reservations, loadDashboard }) {
 
   let list = reservations.map((reservation) => {
   
-    // console.log('newList',newlist)
 
     let {reservation_id, last_name, first_name, people, mobile_number, status, reservation_time, reservation_date} = reservation
     return (
-      <div key={reservation.reservation_id}>
+      <div key={reservation.reservation_id} className="col-5 border pt-2 reservations-tables mb-4">
         <p>
           <b>Reservation Date</b> : {reservation_date}
         </p>
@@ -39,29 +38,29 @@ export default function ListResComp({ reservations, loadDashboard }) {
         <p data-reservation-id-status={reservation_id}>
           <b>Reservation Status</b>: {status}
         </p>
-
+        <div className="my-3 d-flex flex-wrap justify-content-evenly">
         { status!=='seated' ? 
-        
-        <a href={`/reservations/${reservation_id}/seat`}><button>Seat</button></a> 
-
-        : null }
+        <a href={`/reservations/${reservation_id}/seat`}>
+          <button className="mr-2 btn btn-primary"
+          >Seat</button></a> 
+          
+          : null }
 
 
         <a href={`/reservations/${reservation_id}/edit`}>
-        <button>Edit</button>
+        <button className="mr-2 btn btn-secondary" 
+        >Edit</button>
         </a>
 
-        <button data-reservation-id-cancel={reservation.reservation_id} onClick={(e)=>onCancel(e,reservation)}>Cancel</button>
-        <hr />
+        <button className="mr-2 btn btn-danger" data-reservation-id-cancel={reservation.reservation_id} onClick={(e)=>onCancel(e,reservation)}>Cancel</button>
+        </div>
       </div>
     );
   });
 
   return (
     <>
-      <div>
         {list}
-      </div>
     </>
   );
 }
