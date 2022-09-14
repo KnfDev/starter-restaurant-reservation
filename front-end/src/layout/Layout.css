@@ -60,3 +60,10 @@ input {
   margin-top: -10px;
   margin-bottom: 10px;
 }
+
+
+@media screen and (max-width: 600px) {
+  .side-bar {
+    min-height: fit-content;
+  }
+}
