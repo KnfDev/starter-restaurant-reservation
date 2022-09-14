@@ -3,7 +3,7 @@
   background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: max-content;
+  min-height:100vh;
   min-width: max-content;
   font-size: 24px;
 }
