@@ -70,6 +70,19 @@ function isNumber(propertyName) {
   };
 }
 
+function isPhoneNumber(propertyName) {
+  return function (req, res, next) {
+    const { data = {} } = req.body;
+    const isNumber = data[propertyName].replace(/-/g, "");
+    if (Number(isNumber)) {
+      return next();
+    }
+    next({ status: 400, message: `${propertyName}` });
+  };
+}
+
+
+
 function isTime(propertyName) {
   return function (req, res, next) {
     const { data = {} } = req.body;
@@ -195,6 +208,7 @@ module.exports = {
     bodyDataHas("reservation_time"),
     bodyDataHas("people"),
     isNumber("reservation_date"),
+    isPhoneNumber("mobile_number"),
     isTime("reservation_time"),
     isFutureRes,
     openHours,
