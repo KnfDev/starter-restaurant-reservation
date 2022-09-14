@@ -66,7 +66,7 @@ function isNumber(propertyName) {
     if (Number(isNumber)) {
       return next();
     }
-    next({ status: 400, message: `${propertyName}` });
+    next({ status: 400, message: `${propertyName} needs to be a number` });
   };
 }
 
@@ -77,7 +77,7 @@ function isPhoneNumber(propertyName) {
     if (Number(isNumber)) {
       return next();
     }
-    next({ status: 400, message: `${propertyName}` });
+    next({ status: 400, message: `${propertyName} needs to be a number` });
   };
 }
 
@@ -91,7 +91,7 @@ function isTime(propertyName) {
       //  if (Number(isTime) < 1030 || Number(isTime) > 930)
       return next();
     }
-    return next({ status: 400, message: `${propertyName}` });
+    return next({ status: 400, message: `${propertyName} needs to be a number` });
   };
 }
 
