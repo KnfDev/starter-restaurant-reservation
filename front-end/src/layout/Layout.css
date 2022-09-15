@@ -54,7 +54,7 @@
 
 .reservations-tables-dashboard{
   background-color: aliceblue;
-  border-radius: 7px;
+  border-radius: 25px;
 }
 
 .reservations-tables-dashboard:hover{
@@ -85,7 +85,7 @@ input {
 }
 
 .seat-button {
-  border-radius: 25px;
+  border-radius: 5px;
   background-color: aquamarine;
   color: brown;
   border:none;
