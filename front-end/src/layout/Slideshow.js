@@ -13,22 +13,22 @@ export default function Slideshow(){
   </ol>
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img src={Steak} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
+      <img src={Steak} className="d-block w-100" alt="a steak"/>
+      <div className="carousel-caption d-md-block">
         {/* <h5>First slide label</h5> */}
         <p>To eat is to live.</p>
       </div>
     </div>
     <div className="carousel-item">
-      <img src={Pasta} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
+      <img src={Pasta} className="d-block w-100" alt="a plate of pasta"/>
+      <div className="carousel-caption d-md-block">
         {/* <h5>Second slide label</h5> */}
         <p>To live is to eat.</p>
       </div>
     </div>
     <div className="carousel-item">
-      <img src={Pork} className="d-block w-100" alt="..."/>
-      <div className="carousel-caption d-none d-md-block">
+      <img src={Pork} className="d-block w-100" alt="a porkchop"/>
+      <div className="carousel-caption d-md-block">
         {/* <h5>Third slide label</h5> */}
         <p>But to enjoy is to.</p>
       </div>
