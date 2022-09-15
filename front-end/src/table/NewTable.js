@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { createTable, listTables } from "../utils/api";
+import { createTable } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ListTablesComp from "../dashboard/ListTablesComp";
 
 
-export default function NewTable() {
+export default function NewTable({tables, setTables}) {
   const history = useHistory();
-  const [tables, setTables] = useState([]);
+  // const [tables, setTables] = useState([]);
   const [errors, setErrors] = useState(null);
   
 
@@ -16,17 +16,6 @@ export default function NewTable() {
     table_name: "",
     capacity: "",
   });
-  useEffect(loadTables, [])
-
-  function loadTables() {
-    const abortController = new AbortController();
-    setErrors(null); //
-    listTables(abortController.signal) //
-      .then(setTables) //
-      .catch(setErrors); //
-    return () => abortController.abort();
-  }
-  console.log(tables)
 
   const handleChange = (event) => {
     //handles the input in the form html
@@ -81,7 +70,8 @@ export default function NewTable() {
           <button
             className="btn btn-secondary m-1"
             onClick={() => {
-              history.go("-1");
+              history.go(-1);
+              // history.push("/reservations/new")
             }}
           >
             Cancel

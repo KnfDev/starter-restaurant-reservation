@@ -12,6 +12,7 @@ function Dashboard() {
   const [reservationsError, setReservationsError] = useState(null);
   const [tablesError, setTablesError] = useState(null);
   const [tables, setTables] = useState([]);
+  
   const query = useQuery(); //**
   const date = query.get("date") || today(); //**
 
