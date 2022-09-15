@@ -58,6 +58,7 @@ export default function NewTable({tables, setTables}) {
             <input
               type="number"
               name="capacity"
+              min="0"
               value={newTable.capacity}
               placeholder="capacity"
               onChange={handleChange}

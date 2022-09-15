@@ -17,8 +17,18 @@
 }
 
 .periodic {
+  font-family: 'Kaushan Script', cursive;
   font-size:36px;
+  color:#ffffff
 }
+
+.link-text{
+  color: aliceblue
+}
+.link-text:hover{
+  color: #ffffff51;
+}
+
 
 .dashboard-header {
   color:aliceblue;
