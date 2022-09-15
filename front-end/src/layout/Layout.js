@@ -1,8 +1,8 @@
 import React from "react";
 import Menu from "./Menu";
 import Routes from "./Routes";
-
 import "./Layout.css";
+import Slideshow from "./Slideshow";
 
 /**
  * Defines the main layout of the application.
@@ -17,6 +17,7 @@ function Layout() {
       <div className="row h-100">
         <div className="col-md-2 side-bar">
           <Menu />
+        <Slideshow/>
         </div>
         <div className="col css-test">
           <Routes />
