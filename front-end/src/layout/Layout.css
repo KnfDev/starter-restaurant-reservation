@@ -61,8 +61,7 @@ input {
   margin-bottom: 10px;
 }
 
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .side-bar {
     min-height: fit-content;
   }
