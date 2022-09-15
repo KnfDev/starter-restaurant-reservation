@@ -16,7 +16,7 @@ export default function ListResComp({ reservations, loadDashboard }) {
 
     let {reservation_id, last_name, first_name, people, mobile_number, status, reservation_time, reservation_date} = reservation
     return (
-      <div key={reservation.reservation_id} className="col-sm col-xl-5 border pt-2 reservations-tables mb-4">
+      <div key={reservation.reservation_id} className="col-sm col-xl-5 border pt-2 reservations-tables-dashboard mb-4">
         <p>
           <b>Reservation Date</b> : {reservation_date}
         </p>
@@ -41,7 +41,7 @@ export default function ListResComp({ reservations, loadDashboard }) {
         <div className="my-3 d-flex flex-wrap justify-content-evenly">
         { status!=='seated' ? 
         <a href={`/reservations/${reservation_id}/seat`}>
-          <button className="mr-2 btn btn-primary"
+          <button className="mr-2 seat-button"
           >Seat</button></a> 
           
           : null }

@@ -38,6 +38,19 @@
   border-radius: 7px;
 }
 
+/* .reservations-tables:hover{
+  background-color: rgb(194, 208, 219);
+} */
+
+.reservations-tables-dashboard{
+  background-color: aliceblue;
+  border-radius: 7px;
+}
+
+.reservations-tables-dashboard:hover{
+  background-color: rgb(194, 208, 219);
+}
+
 .form-page {
   background-color:rgb(233, 236, 236);
   min-height: 100vmax;
@@ -61,8 +74,20 @@ input {
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 800px) {
+.seat-button {
+  border-radius: 5px;
+  background-color: aquamarine;
+  color: brown;
+  border:none;
+  padding: 7px 12px;
+}
+.seat-button:hover{
+  background-color:rgb(87, 209, 169)
+}
+
+@media screen and (max-width: 700px) {
   .side-bar {
     min-height: fit-content;
   }
+
 }
