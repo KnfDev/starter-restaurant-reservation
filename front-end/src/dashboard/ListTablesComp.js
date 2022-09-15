@@ -17,7 +17,8 @@ export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
   const list = tables.map((table) => {
 
     const finish = <div className="finish">
-    <span><b>Reservation Id: </b>{table.reservation_id}</span> <button className="btn btn-danger finish-button"
+    <span><b>Reservation Id: </b>{table.reservation_id}</span>
+    <button className="btn btn-danger finish-button"
     value={table.table_id}
     data-table-id-finish={table.table_id}
     onClick={clickHandler}
@@ -27,7 +28,7 @@ export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
     </div>
 
     return (
-      <div key={table.table_id} className="col col-md-5 col-xl-3 border pt-2 reservations-tables-dashboard mb-4">
+      <div key={table.table_id} className="col col-sm col-md-6 col-xl-4 border pt-2 reservations-tables-dashboard mb-4">
         <p>
           <b>Table Name: </b>
           {table.table_name}

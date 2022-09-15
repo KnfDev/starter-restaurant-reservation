@@ -13,12 +13,13 @@
 .dash-h1 {
   font-family: 'Montserrat';
   font-size: 48px;
+  text-decoration: underline;
   font-weight: bolder;
 }
 
 .periodic {
   font-family: 'Kaushan Script', cursive;
-  font-size:36px;
+  font-size:36px; 
   color:#ffffff
 }
 
@@ -76,12 +77,16 @@ input {
 
 .finish {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .finish-button {
-  margin-top: -10px;
+  align-self: center;
+  margin-top: 10px;
   margin-bottom: 10px;
+  width: 60%;
 }
 
 .seat-button {
@@ -99,5 +104,4 @@ input {
   .side-bar {
     min-height: fit-content;
   }
-
 }
