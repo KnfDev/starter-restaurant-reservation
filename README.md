@@ -63,4 +63,4 @@ There are also checks in place to verify if date and time are valid
 
 ![picture from mobile view](https://i.imgur.com/OcFdwO2.png)
 
-# Mahalo for your time and if you have any questions, feedback or advice please don't hesitate to reach out to me! - KnfDev
+Mahalo for your time and if you have any questions, feedback or advice please don't hesitate to reach out to me! - KnfDev
