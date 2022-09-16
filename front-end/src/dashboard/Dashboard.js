@@ -66,7 +66,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="row">
-        <div className="col d-flex flex-wrap justify-content-around">
+        <div className="col d-flex align-content-start flex-wrap justify-content-around">
           {reservations.length !== 0 ? (
             <ListResComp
               reservations={reservations}
