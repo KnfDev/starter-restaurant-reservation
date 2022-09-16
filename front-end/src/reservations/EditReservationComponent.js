@@ -16,6 +16,7 @@ export default function EditReservationsComponent() {
     people: "",
   }); //current
   const [errors, setErrors] = useState(null);
+  
   const title = "Edit Reservation"
 
   useEffect(loadDashboard, [params.reservation_id]);
