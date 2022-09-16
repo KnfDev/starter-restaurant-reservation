@@ -16,21 +16,21 @@ export default function Slideshow(){
       <img src={Steak} className="d-block w-100" alt="a steak"/>
       <div className="carousel-caption d-md-block">
         {/* <h5>First slide label</h5> */}
-        <p>To eat is to live.</p>
+        <p className="slideFont">To eat is to live.</p>
       </div>
     </div>
     <div className="carousel-item">
       <img src={Pasta} className="d-block w-100" alt="a plate of pasta"/>
       <div className="carousel-caption d-md-block">
         {/* <h5>Second slide label</h5> */}
-        <p>To live is to eat.</p>
+        <p className="slideFont">To live is to eat.</p>
       </div>
     </div>
     <div className="carousel-item">
       <img src={Pork} className="d-block w-100" alt="a porkchop"/>
       <div className="carousel-caption d-md-block">
         {/* <h5>Third slide label</h5> */}
-        <p>But to enjoy is to.</p>
+        <p className="slideFont">But to enjoy is to love.</p>
       </div>
     </div>
   </div>

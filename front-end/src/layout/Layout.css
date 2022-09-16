@@ -3,22 +3,27 @@
   background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  text-overflow: break-word;
   min-height: 100vh;
-  min-width: 35%;
+  max-width: 35%;
   font-size: 24px;
 }
 
 .carousel{
   margin: 0 auto;
-  max-width: 90%;
+  max-width: 100%;
   text-shadow: 2px 2px #282424;
   border-style: solid;
   border-width: 8px;
   border-color:rgb(240,248,255,.65);
-  font-size:28px;
   font-family: 'Kaushan Script', cursive;
 }
 
+
+
+.slideFont{
+  font-size: 18px;
+}
 
 .dash-h1 {
   font-family: 'Montserrat';
@@ -28,6 +33,7 @@
 }
 
 .periodic {
+  text-overflow: break-word;
   font-family: 'Kaushan Script', cursive;
   font-size:36px; 
   color:#ffffff
@@ -106,14 +112,36 @@ input {
   background-color:rgb(87, 209, 169)
 }
 
+@media screen and (max-width: 555px){
+  
+  .side-bar{
+    max-width: fit-content;
+  }
+  .carousel{
+    margin: -25px auto 25px auto; 
+  }
+  .periodic{
+    font-size: 100px;
+  }
+  #test{
+    font-size: 50px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .side-bar {
     min-height: fit-content;
   }
+  .periodic{
+    font-size: 20px;
+  }
+  
+  .slideFont {
+    font-size:24px;
+  }
   
   .carousel{
-    margin: -25px auto 25px auto;
-    max-width: 50%;
+    max-width: 85%;
     font-family: 'Kaushan Script', cursive;
     text-shadow: 2px 2px #282424;
   }
@@ -122,7 +150,7 @@ input {
 
 
 @media screen and (min-width: 1400px) {
-  .carousel {
+  .slideFont {
     font-size: 38px;
   }
 }

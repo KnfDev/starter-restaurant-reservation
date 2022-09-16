@@ -13,11 +13,11 @@ function Menu() {
     <nav className="navbar align-items-start p-0">
       <div className="container-fluid d-flex flex-column p-0 my-5">
         <Link
-          className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+          className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 "
           to="/"
         >
           <div className="sidebar-brand-text mx-3">
-            <span className="periodic">Restaurant <br/> Rêve Sans Fin</span>
+            <div id="test" className="periodic">Restaurant <br/> Rêve Sans Fin</div>
           </div>
         </Link>
         <hr className="sidebar-divider my-0" />
