@@ -32,7 +32,8 @@ body {
   border: #ffffff;
   color: #ffffff;
   border-style: groove;
-  padding: 10px
+  padding: 10px;
+  background-color: #282424a4;
 }
 
 .slideFont{
@@ -77,11 +78,11 @@ body {
 
 
 .reservations-tables-dashboard{
-  display: inline-block;
+  display: inline;
   background-color: rgba(240, 248, 255, 0.75);
   border-radius: 25px;
   text-align: center;
-  max-height: 60vh;
+  min-height: min-content;
 }
 
 
@@ -139,8 +140,12 @@ input {
   background-color:rgb(87, 209, 169)
 }
 
+
 @media screen and (max-width: 650px){
-  
+  .dash-h1{
+    font-size: 36px;
+  }
+
   .side-bar{
     max-width: fit-content;
   }
@@ -155,26 +160,26 @@ input {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .periodic{
     font-size: 20px;
   }
 
   .slideFont {
-    font-size:24px;
+    font-size:15px;
   }
   
-  .carousel{
+  /* .carousel{
     max-width: 85%;
     font-family: 'Kaushan Script', cursive;
     text-shadow: 2px 2px #282424;
   }
-  
+   */
 }
 
 
-@media screen and (max-width: 1400px) {
+@media screen and (min-width: 1400px) {
   .slideFont {
-    font-size: 38px;
+    font-size: 28px;
   }
 }

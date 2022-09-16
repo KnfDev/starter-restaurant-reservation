@@ -39,15 +39,12 @@ export default function ListResComp({ reservations, loadDashboard }) {
           <b>Reservation Status</b>: {status}
         </p>
 
-        <div className="button-group">
         <div className="my-3 d-flex flex-wrap">
         { status!=='seated' ? 
         <a href={`/reservations/${reservation_id}/seat`}>
-          <button className="mr-2 seat-button"
+          <button className="mr-2 btn btn-primary"
           >Seat</button></a> 
-          
           : null }
-
 
         <a href={`/reservations/${reservation_id}/edit`}>
         <button className="mr-2 btn btn-secondary" 
@@ -55,7 +52,6 @@ export default function ListResComp({ reservations, loadDashboard }) {
         </a>
 
         <button className="mr-2 btn btn-danger" data-reservation-id-cancel={reservation.reservation_id} onClick={(e)=>onCancel(e,reservation)}>Cancel</button>
-        </div>
         </div>
       </div>
     );
