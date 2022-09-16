@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import Routes from "./Routes";
 import "./Layout.css";
 import Slideshow from "./Slideshow";
+import Footer from "./Footer";
 
 /**
  * Defines the main layout of the application.
@@ -22,6 +23,9 @@ function Layout() {
         <div className="col css-test">
           <Routes />
         </div>
+      </div>
+      <div className="footer">
+        <Footer/>
       </div>
     </div>
   );

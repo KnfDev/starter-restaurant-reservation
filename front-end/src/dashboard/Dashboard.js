@@ -41,7 +41,7 @@ function Dashboard() {
 
   return (
     <main>
-      <div className="d-md-flex flex-column flex-wrap my-4 py-4 text-center border dashboard-header">
+      <div className="d-md-flex flex-column flex-wrap my-4 py-4 text-center dashboard-header">
           <h1 className="dash-h1"><b>DASHBOARD</b></h1>
           <h4 className="mb-0">Reservations for {date}</h4>
         <div className="d-flex flex-row justify-content-center mt-2">
