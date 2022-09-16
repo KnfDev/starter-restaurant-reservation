@@ -35,7 +35,7 @@ Edit
 and Cancel
 ![picture of cancel confirmation](https://i.imgur.com/zsV16cW.png)
 
-#Clicking the Search on the navigation bar will accept a search by a partial phone # match and include all reservations
+# Clicking the Search on the navigation bar will accept a search by a partial phone # match and include all reservations
 
 ![picture pre-search](https://i.imgur.com/Xz3hSue.jpeg)
 
@@ -53,7 +53,7 @@ There are also checks in place to verify if date and time are valid
 # New tables feature allows the creation of new tables.  Will be implementing a delete and edit feature here in the future.
 ![picture of new tables page](https://i.imgur.com/cn1ON31.jpeg)
 
-#This app should also be fully responsive and mobile use friendly
+# This app should also be fully responsive and mobile use friendly
 
 ![picture from mobile view](https://i.imgur.com/6b3Z0GX.png)
 
