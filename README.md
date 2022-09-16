@@ -1,6 +1,6 @@
-#Welcome to the Restaurant Rêve Sans Fin reservation and tables management platform
+# Welcome to the Restaurant Rêve Sans Fin reservation and tables management platform
 
-##Aloha I am a developer based in Hawaii I hope you enjoy my project and if you have any questions please [contact me](https://www.linkedin.com/in/kenneth-mai-21839a21a/)!  
+## Aloha I am a developer based in Hawaii I hope you enjoy my project and if you have any questions please [contact me](https://www.linkedin.com/in/kenneth-mai-21839a21a/)!  
 
 This is a mock restaurant resrvation system designed for restaurant use.  
 
@@ -10,7 +10,7 @@ This project was built with Javascript, NodeJS, React, Css, and Bootstrap. Postg
 
 #To view a demo please visit [my deployed project](https://knf-restaurant-client.herokuapp.com/dashboard).  It may take a moment to load as it's hosted on free Heroku server
 
-#To start
+# To start
 1. run `npm install`
 2. in terminal for back-end `npm run start:dev`
 3. in terminal for front end `npm run start`
@@ -41,7 +41,7 @@ and Cancel
 
 ![picture post-search](https://i.imgur.com/yWe0OlW.jpeg)
 
-#New reservation will take you to a reservation form and after creation will navigate you to the date of the new reservation
+# New reservation will take you to a reservation form and after creation will navigate you to the date of the new reservation
 
 ![picture pre-create](https://i.imgur.com/k4prtEz.jpeg)
 
@@ -50,7 +50,7 @@ and Cancel
 There are also checks in place to verify if date and time are valid
 ![picture of an error](https://i.imgur.com/RRaTlji.jpeg)
 
-#New tables feature allows the creation of new tables.  Will be implementing a delete and edit feature here in the future.
+# New tables feature allows the creation of new tables.  Will be implementing a delete and edit feature here in the future.
 ![picture of new tables page](https://i.imgur.com/cn1ON31.jpeg)
 
 #This app should also be fully responsive and mobile use friendly
@@ -63,4 +63,4 @@ There are also checks in place to verify if date and time are valid
 
 ![picture from mobile view](https://i.imgur.com/OcFdwO2.png)
 
-#Mahalo for your time and if you have any questions, feedback or advice please don't hesitate to reach out to me! - KnfDev
+# Mahalo for your time and if you have any questions, feedback or advice please don't hesitate to reach out to me! - KnfDev
