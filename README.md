@@ -8,7 +8,7 @@ Could be repurposed for customer use if we add an authorization validation to on
 
 This project was built with Javascript, NodeJS, React, Css, and Bootstrap. Postgresql and knex is utilized for the database interactions.
 
-#To view a demo please visit [my deployed project](https://knf-restaurant-client.herokuapp.com/dashboard).  It may take a moment to load as it's hosted on free Heroku server
+# To view a demo please visit [my deployed project](https://knf-restaurant-client.herokuapp.com/dashboard).  It may take a moment to load as it's hosted on free Heroku server
 
 # To start
 1. run `npm install`
