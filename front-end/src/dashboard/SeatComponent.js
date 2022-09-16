@@ -9,10 +9,9 @@ export default function SeatComponent() {
   const [tablesError, setTablesError] = useState(null);
   const [tables, setTables] = useState([]);
 
-  
   let params = useParams();
   let reservation_id = params.reservation_id;
-  
+
   useEffect(loadTables, []);
   function loadTables() {
     const abortController = new AbortController();
@@ -32,36 +31,39 @@ export default function SeatComponent() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if(tableId && tableId !== "none"){
+    if (tableId && tableId !== "none") {
       // reservation_id = Number(reservation_id);
       updateTable(tableId, reservation_id)
-      .then(()=>history.push("/dashboard"))
-      .catch(setTablesError);
+        .then(() => history.push("/dashboard"))
+        .catch(setTablesError);
     }
   };
 
   const tablesForm = tables.map((table) => {
     // console.log("hello", table.reservation_id);
     return (
-
-        <option key={table.table_id} value={table.table_id}>
-          {table.table_name} - {table.capacity}
-        </option>
-
+      <option key={table.table_id} value={table.table_id}>
+        {table.table_name} - {table.capacity}
+      </option>
     );
   });
 
   return (
-    <form onSubmit={submitHandler}>
-      <select required name="table_id" onChange={handleChange}>
-        <option>none</option>
-        {tablesForm}
-      </select>
-      <button type="submit">Submit</button>
-      <button type="button" onClick={() => history.go(-1)}>
-        Cancel
-      </button>
-      <ErrorAlert error={tablesError} />
-    </form>
+    <div className="form-page">
+      <div className="dashboard-header my-4 py-4">
+        <h1>Seat reservation at table</h1>
+      </div>
+      <form onSubmit={submitHandler}>
+        <select required name="table_id" onChange={handleChange}>
+          <option>none</option>
+          {tablesForm}
+        </select>
+        <button type="submit">Submit</button>
+        <button type="button" onClick={() => history.go(-1)}>
+          Cancel
+        </button>
+        <ErrorAlert error={tablesError} />
+      </form>
+    </div>
   );
 }
