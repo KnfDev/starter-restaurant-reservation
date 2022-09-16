@@ -28,7 +28,7 @@ export default function ListTablesComp({ tables, loadTables, loadDashboard }) {
     </div>
 
     return (
-      <div key={table.table_id} className="col col-sm col-md-6 col-xl-4 border pt-2 reservations-tables-dashboard mb-4">
+      <div key={table.table_id} className="col col-sm col-md col-lg-5 col-xl-5 border pt-2 reservations-tables-dashboard mx-1 mb-4">
         <p>
           <b>Table Name: </b>
           {table.table_name}

@@ -16,7 +16,7 @@ export default function ListResComp({ reservations, loadDashboard }) {
 
     let {reservation_id, last_name, first_name, people, mobile_number, status, reservation_time, reservation_date} = reservation
     return (
-      <div key={reservation.reservation_id} className="col-sm col-xl-5 border pt-2 reservations-tables-dashboard mb-4">
+      <div key={reservation.reservation_id} className="col-sm col-md col-lg-5 col-xl-5 border pt-2 reservations-tables-dashboard mx-1 mb-4">
         <p>
           <b>Reservation Date</b> : {reservation_date}
         </p>
