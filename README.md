@@ -1,7 +1,12 @@
 #Welcome to the Restaurant Rêve Sans Fin reservation and tables management platform
 
-##Aloha I am a developer based in Hawaii I hope you enjoy my project and if you have any questions please [contact me](https://www.linkedin.com/in/kenneth-mai-21839a21a/)!  This is a mock restaurant resrvation system designed for restaurant use.  Could be repurposed for customer use if we add an authorization validation to only show certain features for restaurant management. 
-This project was made utilizing Javascript, React, Css, and Bootstrap. Postgresql and knex is utilized for the database interactions.
+##Aloha I am a developer based in Hawaii I hope you enjoy my project and if you have any questions please [contact me](https://www.linkedin.com/in/kenneth-mai-21839a21a/)!  
+
+This is a mock restaurant resrvation system designed for restaurant use.  
+
+Could be repurposed for customer use if we add an authorization validation to only show certain features for restaurant management. 
+
+This project was built with Javascript, NodeJS, React, Css, and Bootstrap. Postgresql and knex is utilized for the database interactions.
 
 #To view a demo please visit [my deployed project](https://knf-restaurant-client.herokuapp.com/dashboard).  It may take a moment to load as it's hosted on free Heroku server
 
