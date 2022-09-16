@@ -68,7 +68,9 @@
 .reservations-tables-dashboard{
   background-color: aliceblue;
   border-radius: 25px;
+  max-height: 50%;
 }
+
 
 .reservations-tables-dashboard:hover{
   background-color: rgb(194, 208, 219);
@@ -98,7 +100,8 @@ input {
   align-self: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50%;
+  /* width: 8vw; */
+  font-size: small 3vw;
 }
 
 .seat-button {
