@@ -40,7 +40,7 @@ export default function SearchComponent(){
       <label><b>Mobile Number</b> :</label> <input onChange={handleChange} type="search" name="mobile_number" placeholder="Enter a customer's phone number" required></input> 
       <button className="btn btn-secondary mb-1 ml-1" type="submit">Find</button>
     </form>
-    <div>
+    <div className="d-flex row justify-content-around">
     {reservations.length !== 0 ? <ListResComp reservations={reservations}/> : null}  
     {searched === true && reservations.length === 0 ? `No reservations found with this phone number` : null}
     </div>
