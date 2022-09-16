@@ -14,10 +14,6 @@ body {
   background: none
 }
 
-.css-test{
- min-height: 100vh;
-}
-
 .carousel{
   margin: 0 auto;
   max-width: 100%;
@@ -78,7 +74,6 @@ body {
 
 
 .reservations-tables-dashboard{
-  display: inline;
   background-color: rgba(240, 248, 255, 0.75);
   border-radius: 25px;
   text-align: center;
@@ -94,14 +89,6 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 100vh;
-  /* background: repeating-linear-gradient(
-    -45deg,
-    rgb(233, 236, 236) 5px,
-    rgb(233, 236, 236) .5px,
-    aliceblue 50px,
-    rgb(233, 236, 236) 200px
-  ); */
 }
 
 input {
