@@ -14,7 +14,7 @@ import Slideshow from "./Slideshow";
 function Layout() {
   return (
     <div className="container-fluid">
-      <div className="row h-100">
+      <div className="row h-100 wrapper">
         <div className="col-md-2 side-bar">
           <Menu />
         <Slideshow/>

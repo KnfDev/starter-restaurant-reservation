@@ -1,11 +1,17 @@
 .side-bar {
-  background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   text-overflow: break-word;
-  min-height: 100vh;
-  max-width: 35%;
+  max-width: 40%;
   font-size: 24px;
+}
+
+html {
+  background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
+  background-attachment: fixed;
+  background-size:cover;
+}
+
+body {
+  background: none
 }
 
 .carousel{
@@ -75,7 +81,7 @@
   background-color: aliceblue;
   border-radius: 25px;
   text-align: center;
-  max-height: 50vh;
+  max-height: 60vh;
 }
 
 
@@ -84,16 +90,16 @@
 }
 
 .form-page {
-  min-height: 100vmax;
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 100vh;
   background: repeating-linear-gradient(
     -45deg,
-    rgb(233, 236, 236),
-    rgb(233, 236, 236) 15px,
+    rgb(233, 236, 236) 5px,
+    rgb(233, 236, 236) .5px,
     aliceblue 50px,
-    rgb(233, 236, 236) 80px
+    rgb(233, 236, 236) 200px
   );
 }
 
@@ -133,7 +139,7 @@ input {
   background-color:rgb(87, 209, 169)
 }
 
-@media screen and (max-width: 555px){
+@media screen and (max-width: 650px){
   
   .side-bar{
     max-width: fit-content;
@@ -150,13 +156,10 @@ input {
 }
 
 @media screen and (max-width: 767px) {
-  .side-bar {
-    min-height: fit-content;
-  }
   .periodic{
     font-size: 20px;
   }
-  
+
   .slideFont {
     font-size:24px;
   }
