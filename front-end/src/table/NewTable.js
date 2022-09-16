@@ -72,7 +72,6 @@ export default function NewTable({tables, setTables}) {
             className="btn btn-secondary m-1"
             onClick={() => {
               history.go(-1);
-              // history.push("/reservations/new")
             }}
           >
             Cancel

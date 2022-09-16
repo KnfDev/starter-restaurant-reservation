@@ -143,6 +143,6 @@ module.exports = {
     destroy: [
       asyncErrorBoundary(tableExists),
       asyncErrorBoundary(occupied),
-      destroy
+      asyncErrorBoundary(destroy)
     ]
 }

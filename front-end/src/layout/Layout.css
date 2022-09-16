@@ -1,5 +1,4 @@
 .side-bar {
-  background-color: #393a44;
   background-image: url("../Images/coffee-beans-with-props-making-coffee_1220-4536.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +27,6 @@
 .dash-h1 {
   font-family: 'Montserrat';
   font-size: 48px;
-  text-decoration: underline;
   font-weight: bolder;
 }
 
@@ -36,6 +34,7 @@
   text-overflow: break-word;
   font-family: 'Kaushan Script', cursive;
   font-size:36px; 
+  text-decoration:overline;
   color:#ffffff
 }
 
@@ -56,7 +55,13 @@
 }
 
 .css-test{
-  background-color:rgb(233, 236, 236);
+  background: repeating-linear-gradient(
+    -45deg,
+    rgb(233, 236, 236) 5px,
+    rgb(233, 236, 236) .5px,
+    aliceblue 50px,
+    rgb(233, 236, 236) 200px
+  );
 }
 
 .reservations-tables{
@@ -66,9 +71,11 @@
 
 
 .reservations-tables-dashboard{
+  display: inline-block;
   background-color: aliceblue;
   border-radius: 25px;
-  max-height: 50%;
+  text-align: center;
+  max-height: 50vh;
 }
 
 
@@ -77,11 +84,17 @@
 }
 
 .form-page {
-  background-color:rgb(233, 236, 236);
   min-height: 100vmax;
   display: flex;
   flex-direction: column;
   text-align: center;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgb(233, 236, 236),
+    rgb(233, 236, 236) 15px,
+    aliceblue 50px,
+    rgb(233, 236, 236) 80px
+  );
 }
 
 input {
@@ -102,6 +115,11 @@ input {
   margin-bottom: 10px;
   /* width: 8vw; */
   font-size: small 3vw;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
 }
 
 .seat-button {
@@ -152,7 +170,7 @@ input {
 }
 
 
-@media screen and (min-width: 1400px) {
+@media screen and (max-width: 1400px) {
   .slideFont {
     font-size: 38px;
   }
